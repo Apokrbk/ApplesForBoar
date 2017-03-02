@@ -1,4 +1,4 @@
-package screens;
+package com.apok.games.ballgame.screens;
 
 import com.apok.games.ballgame.BallGame;
 import com.badlogic.gdx.Gdx;
@@ -9,9 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-/**
- * Created by Apok on 02.03.2017.
- */
 
 public abstract class AbstractScreen implements Screen {
     protected BallGame game;

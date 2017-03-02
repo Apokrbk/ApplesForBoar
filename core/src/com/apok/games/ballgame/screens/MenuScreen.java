@@ -2,6 +2,7 @@ package com.apok.games.ballgame.screens;
 
 
 import com.apok.games.ballgame.BallGame;
+import com.apok.games.ballgame.ui.IClickCallback;
 import com.apok.games.ballgame.ui.PlayButton;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -20,7 +21,12 @@ public class MenuScreen extends AbstractScreen {
     @Override
     protected void init() {
         menuBackground = new Image(new Texture("menubackground.png"));
-        playButton = new PlayButton(new Texture("playbutton.png"));
+        playButton = new PlayButton(new IClickCallback() {
+            @Override
+            public void onClick() {
+                game.setScreen(new GameplayScreen(game));
+            }
+        });
         stage.addActor(menuBackground);
         stage.addActor(playButton);
     }

@@ -13,12 +13,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 public class PlayButton extends ImageButton {
     
-    public PlayButton(Texture background) {
-        super(new SpriteDrawable(new Sprite(background)));
-        init();
+    public PlayButton(final IClickCallback callback) {
+        super(new SpriteDrawable(new Sprite(new Texture("playbutton.png"))));
+        init(callback);
     }
 
-    private void init() {
+    private void init(final IClickCallback callback) {
         this.setWidth(300);
         this.setHeight(114);
         this.setX(60);
@@ -27,7 +27,7 @@ public class PlayButton extends ImageButton {
         {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("hej");
+                callback.onClick();
                 return super.touchDown(event, x, y, pointer, button);
             }
         });

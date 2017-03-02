@@ -1,38 +1,21 @@
 package com.apok.games.ballgame;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.apok.games.ballgame.screens.MenuScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class BallGame extends ApplicationAdapter {
+
+
+public class BallGame extends Game{
 
 	public static final int WIDTH = 432;
 	public static final int HEIGHT = 768;
 	public static final String TITLE = "Ball Game";
 
-	SpriteBatch batch;
-	Texture img;
-	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		setScreen(new MenuScreen(this));
 	}
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
 }

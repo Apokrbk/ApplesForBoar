@@ -6,17 +6,16 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Ball extends Image {
-    public static final int RADIUS = 10;
-    private static final int WIDTH = 2*RADIUS;
-    private static final int HEIGHT = 2*RADIUS;
-    private static final int BASIC_VELOCITY = 15;
+    public static final int WIDTH = 50;
+    public static final int HEIGHT = 50;
+    private static final int BASIC_VELOCITY = 10;
 
     private float velX;
     private float velY;
 
     public Ball(int x, int y, Vector3 input)
     {
-        super(new Texture("ball.png"));
+        super(new Texture("apple.png"));
         this.setOrigin(WIDTH/2, HEIGHT/2);
         this.setSize(WIDTH,HEIGHT);
         this.setPosition(x, y);
@@ -36,7 +35,7 @@ public class Ball extends Image {
     public boolean update()
     {
         this.moveBy(velX, velY);
-        if(this.getX() < 0 || this.getX() > BallGame.WIDTH - 2*RADIUS)
+        if(this.getX() < 0 || this.getX() > BallGame.WIDTH - WIDTH)
             velX *= -1;
         if(getY() > BallGame.HEIGHT)
         {

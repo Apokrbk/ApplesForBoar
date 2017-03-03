@@ -18,26 +18,26 @@ public class Player extends Image {
 
     public Player()
     {
-        super(new Texture("player.png"));
+        super(new Texture("apple.png"));
         this.setOrigin(WIDTH/2, HEIGHT/2);
         this.setSize(WIDTH,HEIGHT);
         this.setPosition(STARTING_X, STARTING_Y);
     }
 
-    public float countAngleToInput(Vector3 input) {
+    /*public float countAngleToInput(Vector3 input) {
         float x = input.x - getX();
         float y = input.y - getY();
         double angle = MathUtils.atan2(y,x) * 180.0d / Math.PI;
         return (float)angle;
-    }
+    }*/
 
     public void update(Vector3 input) {
             Rectangle playerMovement = new Rectangle(0+this.getWidth()/2,0, BallGame.WIDTH - this.getWidth(), 200);
             if(Gdx.input.isTouched() && playerMovement.contains(input.x, input.y))
                 this.setPosition(input.x - this.getWidth()/2, this.getY());
-            if(Gdx.input.isTouched() && input.y > 200)
+         /*   if(Gdx.input.isTouched() && input.y > 200)
             {
                 this.setRotation(this.countAngleToInput(input) + 270);
-            }
+            }*/
     }
 }

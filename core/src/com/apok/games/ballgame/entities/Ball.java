@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Ball extends Image {
-    private static final int RADIUS = 10;
+    public static final int RADIUS = 10;
     private static final int WIDTH = 2*RADIUS;
     private static final int HEIGHT = 2*RADIUS;
-    private static final int BASIC_VELOCITY = 8;
+    private static final int BASIC_VELOCITY = 15;
 
     private float velX;
     private float velY;
@@ -33,10 +33,16 @@ public class Ball extends Image {
         velX = velY / ratio;
     }
 
-    public void update()
+    public boolean update()
     {
         this.moveBy(velX, velY);
         if(this.getX() < 0 || this.getX() > BallGame.WIDTH - 2*RADIUS)
             velX *= -1;
+        if(getY() > BallGame.HEIGHT)
+        {
+            this.remove();
+            return false;
+        }
+        return true;
     }
 }

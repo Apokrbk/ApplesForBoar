@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import java.util.ArrayList;
+
 
 public class GameplayScreen extends AbstractScreen{
 
@@ -16,6 +18,7 @@ public class GameplayScreen extends AbstractScreen{
     private Player player;
     private Ball ball;
     private Vector3 input;
+    private boolean ballOnScreen = false;
 
     public GameplayScreen(BallGame game) {
         super(game);
@@ -23,11 +26,12 @@ public class GameplayScreen extends AbstractScreen{
 
     @Override
     protected void init() {
+        input = new Vector3(0,0,0);
         background = new Image(new Texture("menubackground.png"));
         player = new Player();
         stage.addActor(background);
         stage.addActor(player);
-        input = new Vector3(0,0,0);
+
     }
 
     public void render(float delta)
@@ -37,16 +41,19 @@ public class GameplayScreen extends AbstractScreen{
         camera.unproject(input);
         addBall();
         player.update(input);
-        ball.update();
+        if(ballOnScreen)
+            ballOnScreen = ball.update();
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();
+        System.out.println("X: "+ player.getX() + "Y: " + player.getY());
     }
 
     private void addBall() {
-        if(Gdx.input.isTouched() && input.y > 150)
+        if(Gdx.input.isTouched() && input.y > 150 && !ballOnScreen)
         {
-            ball = new Ball((int)(player.getX()+player.getWidth()/2), (int)(player.getY()),input);
+            ballOnScreen = true;
+            ball = new Ball((int)(player.getX()), (int)player.getY(), input);
             stage.addActor(ball);
         }
     }

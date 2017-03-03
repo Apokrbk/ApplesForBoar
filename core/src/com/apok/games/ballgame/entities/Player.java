@@ -13,8 +13,8 @@ public class Player extends Image {
     private static final int WIDTH = 50;
     private static final int HEIGHT = 50;
 
-    private static final int STARTING_X = 200;
-    private static final int STARTING_Y = 50;
+    private static final int STARTING_X = 190;
+    private static final int STARTING_Y = 20;
 
     public Player()
     {
@@ -32,7 +32,7 @@ public class Player extends Image {
     }*/
 
     public void update(Vector3 input) {
-            Rectangle playerMovement = new Rectangle(0+this.getWidth()/2,0, BallGame.WIDTH - this.getWidth(), 200);
+            Rectangle playerMovement = new Rectangle(0+this.getWidth()/2,0, BallGame.WIDTH - this.getWidth(), 90);
             if(Gdx.input.isTouched() && playerMovement.contains(input.x, input.y))
                 this.setPosition(input.x - this.getWidth()/2, this.getY());
          /*   if(Gdx.input.isTouched() && input.y > 200)

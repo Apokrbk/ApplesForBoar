@@ -19,10 +19,10 @@ public class PlayButton extends ImageButton {
     }
 
     private void init(final IClickCallback callback) {
-        this.setWidth(300);
-        this.setHeight(114);
-        this.setX(60);
-        this.setY(370);
+        this.setWidth(350);
+        this.setHeight(200);
+        this.setX(40);
+        this.setY(270);
         this.addListener(new ClickListener()
         {
             @Override

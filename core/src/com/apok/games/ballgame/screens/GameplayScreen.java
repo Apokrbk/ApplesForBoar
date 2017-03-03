@@ -21,7 +21,7 @@ public class GameplayScreen extends AbstractScreen{
     private Ball ball;
     private Vector3 input;
     private Boar boar;
-    private int balls = 3;
+    private int balls = 15;
     private boolean ballOnScreen = false;
 
     public GameplayScreen(BallGame game) {
@@ -49,14 +49,16 @@ public class GameplayScreen extends AbstractScreen{
         boar.update();
         player.update(input);
         if(ballOnScreen)
-            ballOnScreen = ball.update();
+        {
+            ballOnScreen = ball.update(boar, game);
+        }
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();
     }
 
     private void addBall() {
-        if(Gdx.input.isTouched() && input.y > 150 && !ballOnScreen && balls>0)
+        if(Gdx.input.isTouched() && input.y > 90 && !ballOnScreen && balls>0)
         {
             balls--;
             ballOnScreen = true;
@@ -66,5 +68,6 @@ public class GameplayScreen extends AbstractScreen{
             stage.addActor(ball);
         }
     }
+
 
 }

@@ -2,19 +2,13 @@ package com.apok.games.ballgame.entities;
 
 import com.apok.games.ballgame.BallGame;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-/**
- * Created by Apok on 03.03.2017.
- */
-
 public class Ball extends Image {
-    public static final int RADIUS = 10;
-    public static final int WIDTH = 2*RADIUS;
-    public static final int HEIGHT = 2*RADIUS;
+    private static final int RADIUS = 10;
+    private static final int WIDTH = 2*RADIUS;
+    private static final int HEIGHT = 2*RADIUS;
     private static final int BASIC_VELOCITY = 8;
 
     private float velX;
@@ -30,7 +24,7 @@ public class Ball extends Image {
         setVelocitiesBasedOnInput(input);
     }
 
-    public void setVelocitiesBasedOnInput(Vector3 input)
+    private void setVelocitiesBasedOnInput(Vector3 input)
     {
         float xSide = input.x - getX();
         float ySide = input.y - getY();

@@ -10,13 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 
-public abstract class AbstractScreen implements Screen {
-    protected BallGame game;
-    protected Stage stage;
-    protected OrthographicCamera camera;
-    protected SpriteBatch spriteBatch;
+abstract class AbstractScreen implements Screen {
+    BallGame game;
+    Stage stage;
+    OrthographicCamera camera;
+    SpriteBatch spriteBatch;
 
-    public AbstractScreen(BallGame game)
+    AbstractScreen(BallGame game)
     {
         this.game = game;
         createCamera();

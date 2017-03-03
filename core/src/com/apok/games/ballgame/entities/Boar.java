@@ -2,7 +2,9 @@ package com.apok.games.ballgame.entities;
 
 import com.apok.games.ballgame.BallGame;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 /**
  * Created by Apok on 03.03.2017.
@@ -16,9 +18,14 @@ public class Boar extends Image {
     private static final int STARTING_Y = 544;
     private int velX = -2;
 
+    private Texture flippedBoar;
+    private Texture boar;
+
     public Boar()
     {
         super(new Texture("boar.png"));
+        boar = new Texture("boar.png");
+        flippedBoar = new Texture("flippedboar.png");
         this.setOrigin(WIDTH/2, HEIGHT/2);
         this.setSize(WIDTH,HEIGHT);
         this.setPosition(STARTING_X, STARTING_Y);
@@ -30,7 +37,15 @@ public class Boar extends Image {
         if(getX() > BallGame.WIDTH - WIDTH || getX() < 0)
         {
             velX *= -1;
+            flipTexture();
         }
+    }
 
+    public void flipTexture()
+    {
+        if(velX > 0)
+            this.setDrawable(new SpriteDrawable(new Sprite(flippedBoar)));
+        else
+            this.setDrawable(new SpriteDrawable(new Sprite(boar)));
     }
 }

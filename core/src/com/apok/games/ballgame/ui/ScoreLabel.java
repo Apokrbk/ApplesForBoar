@@ -20,13 +20,15 @@ public class ScoreLabel extends Label {
     }
 
     private void init() {
-        this.setX(15);
+        this.setX(20);
         this.setY(30);
     }
 
     private static LabelStyle prepareLabelStyle() {
         LabelStyle labelStyle = new LabelStyle();
-        labelStyle.font = new BitmapFont();
+        BitmapFont font = new BitmapFont();
+        font.getData().setScale(1.5f, 1.5f);
+        labelStyle.font = font;
         return labelStyle;
     }
 }

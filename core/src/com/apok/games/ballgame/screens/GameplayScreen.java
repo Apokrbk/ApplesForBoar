@@ -2,6 +2,7 @@ package com.apok.games.ballgame.screens;
 
 import com.apok.games.ballgame.BallGame;
 import com.apok.games.ballgame.entities.Ball;
+import com.apok.games.ballgame.entities.Boar;
 import com.apok.games.ballgame.entities.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,6 +19,7 @@ public class GameplayScreen extends AbstractScreen{
     private Player player;
     private Ball ball;
     private Vector3 input;
+    private Boar boar;
     private int balls = 3;
     private boolean ballOnScreen = false;
 
@@ -30,7 +32,9 @@ public class GameplayScreen extends AbstractScreen{
         input = new Vector3(0,0,0);
         background = new Image(new Texture("menubackground.png"));
         player = new Player();
+        boar = new Boar();
         stage.addActor(background);
+        stage.addActor(boar);
         stage.addActor(player);
 
     }
@@ -41,6 +45,7 @@ public class GameplayScreen extends AbstractScreen{
         input.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(input);
         addBall();
+        boar.update();
         player.update(input);
         if(ballOnScreen)
             ballOnScreen = ball.update();

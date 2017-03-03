@@ -14,7 +14,7 @@ public class Player extends Image {
     private static final int HEIGHT = 50;
 
     private static final int STARTING_X = 190;
-    private static final int STARTING_Y = 20;
+    private static final int STARTING_Y = 50;
 
     public Player()
     {

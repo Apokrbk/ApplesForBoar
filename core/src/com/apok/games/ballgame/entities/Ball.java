@@ -8,9 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import java.awt.Rectangle;
 
 public class Ball extends Image {
-    public static final int WIDTH = 50;
-    public static final int HEIGHT = 50;
-    private static final int BASIC_VELOCITY = 15;
+    public static final int WIDTH = 40;
+    public static final int HEIGHT = 40;
+    private static final int BASIC_VELOCITY = 20;
 
     private float velX;
     private float velY;

@@ -6,13 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
-/**
- * Created by Apok on 03.03.2017.
- */
-
 public class Boar extends Image {
-    public static final int WIDTH = 150;
-    public static final int HEIGHT = 90;
+    private static final int WIDTH = 150;
+    private static final int HEIGHT = 90;
 
     private static final int STARTING_X = 126;
     private static final int STARTING_Y = 544;
@@ -34,6 +30,10 @@ public class Boar extends Image {
     public void update()
     {
         moveBy(velX, 0);
+        changeDirectionIfBoarHitSide();
+    }
+
+    private void changeDirectionIfBoarHitSide() {
         if(getX() > BallGame.WIDTH - WIDTH || getX() < 0)
         {
             velX *= -1;
@@ -41,7 +41,7 @@ public class Boar extends Image {
         }
     }
 
-    public void flipTexture()
+    private void flipTexture()
     {
         if(velX > 0)
             this.setDrawable(new SpriteDrawable(new Sprite(flippedBoar)));

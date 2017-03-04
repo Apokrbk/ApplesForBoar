@@ -2,9 +2,6 @@ package com.apok.games.ballgame;
 
 import com.apok.games.ballgame.screens.MenuScreen;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-
 
 
 public class BallGame extends Game{

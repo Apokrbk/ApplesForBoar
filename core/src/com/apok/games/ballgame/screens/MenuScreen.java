@@ -11,17 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class MenuScreen extends AbstractScreen {
 
-    private Image menuBackground;
-    private PlayButton playButton;
-
     public MenuScreen(BallGame game) {
         super(game);
     }
 
     @Override
     protected void init() {
-        menuBackground = new Image(new Texture("menubackground.png"));
-        playButton = new PlayButton(new IClickCallback() {
+        Image menuBackground = new Image(new Texture("menubackground.png"));
+        PlayButton playButton = new PlayButton(new IClickCallback() {
             @Override
             public void onClick() {
                 game.setScreen(new GameplayScreen(game));

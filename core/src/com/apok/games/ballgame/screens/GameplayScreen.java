@@ -7,19 +7,12 @@ import com.apok.games.ballgame.entities.Player;
 import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-
-import java.util.ArrayList;
 
 
-public class GameplayScreen extends AbstractScreen{
+class GameplayScreen extends AbstractScreen{
 
-    private Image background;
-    private Image scoreLabelBackground;
     private Player player;
     private Ball ball;
     private Vector3 input;
@@ -28,48 +21,70 @@ public class GameplayScreen extends AbstractScreen{
     private int balls = 15;
     private boolean ballOnScreen = false;
 
-    public GameplayScreen(BallGame game) {
+    GameplayScreen(BallGame game) {
         super(game);
     }
 
     @Override
     protected void init() {
         input = new Vector3(0,0,0);
-        background = new Image(new Texture("menubackground.png"));
-        player = new Player();
-        boar = new Boar();
-        scoreLabelBackground = new Image(new Texture("scorelabel.png"));
-        scoreLabelBackground.setPosition(10, 10);
+        initBackground();
+        initPlayer();
+        initBoar();
+        initScoreLabelBackground();
+        initScoreLabel();
+
+    }
+
+    private void initScoreLabel() {
         scoreLabel = new ScoreLabel();
         scoreLabel.setText("SCORE: "+ game.getScore());
-        stage.addActor(background);
-        stage.addActor(boar);
-        stage.addActor(player);
-        stage.addActor(scoreLabelBackground);
         stage.addActor(scoreLabel);
+    }
 
+    private void initScoreLabelBackground() {
+        Image scoreLabelBackground = new Image(new Texture("scorelabel.png"));
+        scoreLabelBackground.setPosition(10, 10);
+        stage.addActor(scoreLabelBackground);
+    }
+
+    private void initBoar() {
+        boar = new Boar();
+        stage.addActor(boar);
+    }
+
+    private void initPlayer() {
+        player = new Player();
+        stage.addActor(player);
+    }
+
+    private void initBackground() {
+        Image background = new Image(new Texture("menubackground.png"));
+        stage.addActor(background);
     }
 
     public void render(float delta)
     {
         super.render(delta);
-        input.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-        camera.unproject(input);
+        setInput();
         addBall();
         boar.update();
         player.update(input);
         scoreLabel.setText("SCORE: "+ game.getScore());
         if(ballOnScreen)
-        {
             ballOnScreen = ball.update(boar, game);
-        }
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();
     }
 
+    private void setInput() {
+        input.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+        camera.unproject(input);
+    }
+
     private void addBall() {
-        if(Gdx.input.isTouched() && input.y > 90 && !ballOnScreen && balls>0)
+        if(isShootingAllowed())
         {
             balls--;
             ballOnScreen = true;
@@ -78,6 +93,11 @@ public class GameplayScreen extends AbstractScreen{
                     input);
             stage.addActor(ball);
         }
+    }
+
+    private boolean isShootingAllowed()
+    {
+        return Gdx.input.isTouched() && input.y > 90 && !ballOnScreen && balls>0;
     }
 
 

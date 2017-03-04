@@ -9,11 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 
 public class Player extends Image {
-    private static final int WIDTH = 50;
-    private static final int HEIGHT = 50;
+    private static final int WIDTH = 40;
+    private static final int HEIGHT = 40;
 
     private static final int STARTING_X = 190;
-    private static final int STARTING_Y = 50;
+    private static final int STARTING_Y = 60;
 
     private Rectangle playerMovement;
 
@@ -23,7 +23,7 @@ public class Player extends Image {
         this.setOrigin(WIDTH/2, HEIGHT/2);
         this.setSize(WIDTH,HEIGHT);
         this.setPosition(STARTING_X, STARTING_Y);
-        playerMovement = new Rectangle(0+this.getWidth()/2,0, BallGame.WIDTH - this.getWidth(), 90);
+        playerMovement = new Rectangle(0+this.getWidth()/2,0, BallGame.WIDTH - this.getWidth(), 120);
     }
 
     /*public float countAngleToInput(Vector3 input) {

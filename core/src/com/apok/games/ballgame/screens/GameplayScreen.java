@@ -98,7 +98,7 @@ class GameplayScreen extends AbstractScreen{
 
     private boolean isShootingAllowed()
     {
-        return Gdx.input.isTouched() && input.y > 140 && !ballOnScreen && balls>0;
+        return Gdx.input.isTouched() && input.y > 140 && !ballOnScreen && balls>0 && game.isPlaying();
     }
 
 

@@ -2,7 +2,6 @@ package com.apok.games.ballgame.entities;
 
 import com.apok.games.ballgame.BallGame;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Action;

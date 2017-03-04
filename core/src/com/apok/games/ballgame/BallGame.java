@@ -9,6 +9,7 @@ public class BallGame extends Game{
 	public static final int WIDTH = 432;
 	public static final int HEIGHT = 768;
 	public static final String TITLE = "Ball Game";
+	private boolean playing = false;
 
 	public int getScore() {
 		return score;
@@ -26,4 +27,11 @@ public class BallGame extends Game{
 		score++;
 	}
 
+	public boolean isPlaying() {
+		return playing;
+	}
+
+	public void setPlaying(boolean playing) {
+		this.playing = playing;
+	}
 }

@@ -6,7 +6,7 @@ import com.apok.games.ballgame.ui.IClickCallback;
 import com.apok.games.ballgame.ui.PlayButton;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-
+import com.badlogic.gdx.utils.Timer;
 
 
 public class MenuScreen extends AbstractScreen {
@@ -17,11 +17,17 @@ public class MenuScreen extends AbstractScreen {
 
     @Override
     protected void init() {
-        Image menuBackground = new Image(new Texture("menubackground.png"));
-        PlayButton playButton = new PlayButton(new IClickCallback() {
+        final Image menuBackground = new Image(new Texture("menubackground.png"));
+        final PlayButton playButton = new PlayButton(new IClickCallback() {
             @Override
             public void onClick() {
                 game.setScreen(new GameplayScreen(game));
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        game.setPlaying(true);
+                    }
+                }, 2);
             }
         });
         stage.addActor(menuBackground);

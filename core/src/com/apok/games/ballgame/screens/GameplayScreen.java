@@ -73,6 +73,7 @@ class GameplayScreen extends AbstractScreen{
         scoreLabel.setText("SCORE: "+ game.getScore());
         if(ballOnScreen)
             ballOnScreen = ball.update(boar, game);
+        stage.act();
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();

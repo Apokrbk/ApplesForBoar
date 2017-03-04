@@ -2,15 +2,18 @@ package com.apok.games.ballgame.entities;
 
 import com.apok.games.ballgame.BallGame;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 
 public class Ball extends Image {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 40;
-    private static final int BASIC_VELOCITY = 20;
+    private static final int BASIC_VELOCITY = 12;
 
     private float velX;
     private float velY;
@@ -23,6 +26,7 @@ public class Ball extends Image {
         this.setPosition(x, y);
         velX = velY = 0;
         setVelocitiesBasedOnInput(input);
+        rotate();
     }
 
     private void setVelocitiesBasedOnInput(Vector3 input)
@@ -67,6 +71,12 @@ public class Ball extends Image {
                 ballRectangle.contains(boar.getX()+boar.getWidth(), boar.getY()) ||
                 ballRectangle.contains(boar.getX()+boar.getWidth(), boar.getY()+boar.getHeight()) ||
                 boarRectangle.contains(ballRectangle);
+    }
+
+    private void rotate()
+    {
+        Action rotation = Actions.rotateBy(4*360, 4);
+        this.addAction(rotation);
     }
 
 }

@@ -3,12 +3,15 @@ package com.apok.games.ballgame.screens;
 import com.apok.games.ballgame.BallGame;
 import com.apok.games.ballgame.entities.Ball;
 import com.apok.games.ballgame.entities.Boar;
+import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.Player;
 import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+
+import java.util.ArrayList;
 
 
 class GameplayScreen extends AbstractScreen{
@@ -20,6 +23,7 @@ class GameplayScreen extends AbstractScreen{
     private ScoreLabel scoreLabel;
     private int balls = 15;
     private boolean ballOnScreen = false;
+    private ArrayList<Obstacle> obstacles;
 
     GameplayScreen(BallGame game) {
         super(game);
@@ -33,7 +37,16 @@ class GameplayScreen extends AbstractScreen{
         initBoar();
         initScoreLabelBackground();
         initScoreLabel();
+        initObstacles();
 
+    }
+
+    private void initObstacles() {
+        obstacles = new ArrayList<Obstacle>();
+        obstacles.add(new Obstacle());
+        obstacles.add(new Obstacle());
+        for(Obstacle obstacle: obstacles)
+            stage.addActor(obstacle);
     }
 
     private void initScoreLabel() {
@@ -71,12 +84,26 @@ class GameplayScreen extends AbstractScreen{
         boar.update();
         player.update(input);
         scoreLabel.setText("SCORE: "+ game.getScore());
-        if(ballOnScreen)
-            ballOnScreen = ball.update(boar, game);
+        updateObstacles();
         stage.act();
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();
+    }
+
+    private void updateObstacles() {
+            for(Obstacle obstacle: obstacles)
+            {
+                obstacle.update();
+                if(ballOnScreen && obstacle.collidesWithBall(ball))
+                {
+                    ballOnScreen = false;
+                    ball.remove();
+                }
+            }
+            if(ballOnScreen)
+                ballOnScreen = ball.update(boar, game);
+
     }
 
     private void setInput() {

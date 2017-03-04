@@ -64,12 +64,7 @@ public class Ball extends Image {
     {
         Rectangle ballRectangle = new Rectangle(getX(), getY(), WIDTH, HEIGHT);
         Rectangle boarRectangle = new Rectangle(boar.getX(), boar.getY(), boar.getWidth(), boar.getHeight());
-
-        return ballRectangle.contains(boar.getX(), boar.getY()) ||
-                ballRectangle.contains(boar.getX(), boar.getY()+boar.getHeight()) ||
-                ballRectangle.contains(boar.getX()+boar.getWidth(), boar.getY()) ||
-                ballRectangle.contains(boar.getX()+boar.getWidth(), boar.getY()+boar.getHeight()) ||
-                boarRectangle.contains(ballRectangle);
+        return ballRectangle.overlaps(boarRectangle);
     }
 
     private void rotate()

@@ -7,29 +7,31 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Obstacle extends Image{
-    private static final int WIDTH = 150;
+
     private static final int HEIGHT = 20;
 
     private Rectangle bounds;
     private int velX;
+    private int velY;
+    private int width;
 
-    public Obstacle()
+    public Obstacle(int x, int y, int width, int velX, int velY)
     {
         super(new Texture("obstacle.png"));
-        int starting_x = MathUtils.random(0, BallGame.WIDTH - WIDTH);
-        int starting_y = MathUtils.random(200, 500);
-        this.setOrigin(WIDTH/2, HEIGHT/2);
-        this.setSize(WIDTH,HEIGHT);
-        this.setPosition(starting_x, starting_y);
-        bounds = new Rectangle(starting_x, starting_y, WIDTH, HEIGHT);
-        velX = MathUtils.random(1,4);
+        this.width = width;
+        this.setOrigin(width/2, HEIGHT/2);
+        this.setSize(width,HEIGHT);
+        this.setPosition(x, y);
+        bounds = new Rectangle(x, y, width, HEIGHT);
+        this.velX = velX;
+        this.velY = velY;
     }
 
     public void update()
     {
-        this.moveBy(velX, 0);
-        bounds.setPosition(bounds.getX() + velX, bounds.getY());
-        if(getX() < 0 || getX() > BallGame.WIDTH - WIDTH)
+        this.moveBy(velX, velY);
+        bounds.setPosition(bounds.getX() + velX, bounds.getY() + velY);
+        if(getX() < 0 || getX() > BallGame.WIDTH - width)
             velX*=-1;
     }
 

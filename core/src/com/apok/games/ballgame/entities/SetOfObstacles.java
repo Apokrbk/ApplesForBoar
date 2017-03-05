@@ -1,15 +1,19 @@
 package com.apok.games.ballgame.entities;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
 import java.util.ArrayList;
 
 
 public abstract class SetOfObstacles {
 
-    private ArrayList<Obstacle> obstacles;
+    protected ArrayList<Obstacle> obstacles;
 
-    public SetOfObstacles()
+    public SetOfObstacles(Stage stage)
     {
+        obstacles = new ArrayList<Obstacle>();
         initObstacles();
+        addObstaclesToStage(stage);
     }
 
     protected abstract void initObstacles();
@@ -18,6 +22,14 @@ public abstract class SetOfObstacles {
         for(Obstacle obstacle : obstacles)
         {
             obstacle.update();
+        }
+    }
+
+    protected void addObstaclesToStage(Stage stage)
+    {
+        for(Obstacle obstacle : obstacles)
+        {
+            stage.addActor(obstacle);
         }
     }
 

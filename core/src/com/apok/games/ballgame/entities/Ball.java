@@ -45,7 +45,8 @@ public class Ball extends Image {
         changeDirectionIfBallHitSide();
         if(ballCollidesWithBoar(boar))
         {
-            gameplayScreen.getGame().addPoint();
+            gameplayScreen.getGame().getScoreService().addPoint();
+            gameplayScreen.getGame().getScoreService().setHighscore();
             gameplayScreen.changeToNextLevel();
             this.remove();
             return false;

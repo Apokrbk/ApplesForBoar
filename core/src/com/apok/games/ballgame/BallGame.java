@@ -1,6 +1,7 @@
 package com.apok.games.ballgame;
 
 import com.apok.games.ballgame.screens.MenuScreen;
+import com.apok.games.ballgame.services.ScoreService;
 import com.badlogic.gdx.Game;
 
 
@@ -10,21 +11,17 @@ public class BallGame extends Game{
 	public static final int HEIGHT = 768;
 	public static final String TITLE = "Ball Game";
 	private boolean playing = false;
+	private ScoreService scoreService;
 
-	public int getScore() {
-		return score;
+	public ScoreService getScoreService() {
+		return scoreService;
 	}
-
-	private int score;
 
 	@Override
 	public void create () {
+		scoreService = new ScoreService();
+		System.out.println("HIGHSCORE: "+ scoreService.getHighscore());
 		setScreen(new MenuScreen(this));
-	}
-
-	public void addPoint()
-	{
-		score++;
 	}
 
 	public boolean isPlaying() {

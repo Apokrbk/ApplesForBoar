@@ -58,7 +58,7 @@ public class GameplayScreen extends AbstractScreen{
 
     private void initScoreLabel() {
         scoreLabel = new ScoreLabel();
-        scoreLabel.setText("SCORE: "+ game.getScore());
+        scoreLabel.setText("SCORE: "+ game.getScoreService().getPoints());
         stage.addActor(scoreLabel);
     }
 
@@ -93,7 +93,7 @@ public class GameplayScreen extends AbstractScreen{
         player.update(input);
         if(isBallOnStage())
             ball.update(boar, this);
-        scoreLabel.setText("SCORE: "+ game.getScore());
+        scoreLabel.setText("SCORE: "+ game.getScoreService().getPoints());
         stage.act();
         spriteBatch.begin();
         stage.draw();
@@ -102,7 +102,7 @@ public class GameplayScreen extends AbstractScreen{
         if(!game.isPlaying())
         {
             countDown.update(delta);
-            spriteBatch.draw(countDown.getFrame(),100,300);
+            spriteBatch.draw(countDown.getFrame(),72,240);
         }
         spriteBatch.end();
     }

@@ -102,7 +102,12 @@ class GameplayScreen extends AbstractScreen{
                 }
             }
             if(ballOnScreen)
+            {
                 ballOnScreen = ball.update(boar, game);
+                if(!ballOnScreen)
+                    game.setScreen(new GameplayScreen(game));
+            }
+
 
     }
 

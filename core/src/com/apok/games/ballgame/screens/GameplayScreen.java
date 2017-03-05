@@ -7,6 +7,7 @@ import com.apok.games.ballgame.entities.Player;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.apok.games.ballgame.entities.levels.Level1;
 import com.apok.games.ballgame.entities.levels.Level2;
+import com.apok.games.ballgame.services.SoundService;
 import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,6 +25,7 @@ public class GameplayScreen extends AbstractScreen{
     private Boar boar;
     private ScoreLabel scoreLabel;
     private Stack<SetOfObstacles> levels;
+    private SoundService soundService;
 
     GameplayScreen(BallGame game) {
         super(game);
@@ -39,11 +41,31 @@ public class GameplayScreen extends AbstractScreen{
         initScoreLabelBackground();
         initScoreLabel();
         initLevels();
+        soundService = new SoundService();
+        soundService.playBackgroundMusic();
 
     }
 
     private void initLevels() {
         levels = new Stack<SetOfObstacles>();
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
+        levels.push(new Level2());
+        levels.push(new Level1());
         levels.push(new Level2());
         levels.push(new Level1());
         levels.peek().addObstaclesToStage(stage);
@@ -123,8 +145,10 @@ public class GameplayScreen extends AbstractScreen{
     }
 
     public void changeToNextLevel() {
+        soundService.playChrum();
         levels.peek().removeFromStage();
         levels.pop();
         levels.peek().addObstaclesToStage(stage);
     }
+
 }

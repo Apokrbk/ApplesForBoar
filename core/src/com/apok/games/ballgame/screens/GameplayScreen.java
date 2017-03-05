@@ -9,6 +9,7 @@ import com.apok.games.ballgame.entities.levels.Level1;
 import com.apok.games.ballgame.entities.levels.Level2;
 import com.apok.games.ballgame.services.SoundService;
 import com.apok.games.ballgame.ui.Animation;
+import com.apok.games.ballgame.ui.MyFont;
 import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,10 +27,10 @@ public class GameplayScreen extends AbstractScreen{
     private Ball ball;
     private Vector3 input;
     private Boar boar;
-    private ScoreLabel scoreLabel;
     private SetOfObstacles activeLevel;
     private SoundService soundService;
     private Animation countDown;
+    private MyFont myFont;
 
     GameplayScreen(BallGame game) {
         super(game);
@@ -43,11 +44,11 @@ public class GameplayScreen extends AbstractScreen{
         initPlayer();
         initBoar();
         initScoreLabelBackground();
-        initScoreLabel();
         initLevels();
         soundService = new SoundService();
         soundService.playBackgroundMusic();
         countDown = new Animation(new TextureRegion(new Texture("countdown.png")), 3, 3.4f);
+        myFont = new MyFont();
 
     }
 
@@ -56,11 +57,6 @@ public class GameplayScreen extends AbstractScreen{
         activeLevel.addObstaclesToStage(stage);
     }
 
-    private void initScoreLabel() {
-        scoreLabel = new ScoreLabel();
-        scoreLabel.setText("SCORE: "+ game.getScoreService().getPoints());
-        stage.addActor(scoreLabel);
-    }
 
     private void initScoreLabelBackground() {
         Image scoreLabelBackground = new Image(new Texture("scorelabel.png"));
@@ -93,7 +89,6 @@ public class GameplayScreen extends AbstractScreen{
         player.update(input);
         if(isBallOnStage())
             ball.update(boar, this);
-        scoreLabel.setText("SCORE: "+ game.getScoreService().getPoints());
         stage.act();
         spriteBatch.begin();
         stage.draw();
@@ -104,6 +99,7 @@ public class GameplayScreen extends AbstractScreen{
             countDown.update(delta);
             spriteBatch.draw(countDown.getFrame(),72,240);
         }
+        myFont.drawScore(game.getScoreService().getPoints(), 105, 22, spriteBatch);
         spriteBatch.end();
     }
 

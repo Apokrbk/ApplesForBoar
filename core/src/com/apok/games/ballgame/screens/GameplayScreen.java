@@ -44,8 +44,8 @@ public class GameplayScreen extends AbstractScreen{
 
     private void initLevels() {
         levels = new Stack<SetOfObstacles>();
-        levels.push(new Level2(stage));
-        levels.push(new Level1(stage));
+        levels.push(new Level2());
+        levels.push(new Level1());
         levels.peek().addObstaclesToStage(stage);
     }
 

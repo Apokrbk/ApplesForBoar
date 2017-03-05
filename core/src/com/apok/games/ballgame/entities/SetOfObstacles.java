@@ -9,7 +9,7 @@ public abstract class SetOfObstacles {
 
     protected ArrayList<Obstacle> obstacles;
 
-    public SetOfObstacles(Stage stage)
+    public SetOfObstacles()
     {
         obstacles = new ArrayList<Obstacle>();
         initObstacles();

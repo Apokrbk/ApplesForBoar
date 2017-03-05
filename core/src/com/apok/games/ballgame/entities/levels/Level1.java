@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 
 public class Level1 extends SetOfObstacles{
-    public Level1(Stage stage) {
-        super(stage);
+    public Level1() {
+        super();
     }
 
     @Override

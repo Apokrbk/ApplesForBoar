@@ -1,6 +1,7 @@
 package com.apok.games.ballgame.entities;
 
 import com.apok.games.ballgame.BallGame;
+import com.apok.games.ballgame.screens.GameplayScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -37,13 +38,14 @@ public class Ball extends Image {
         velX = velY / ratio;
     }
 
-    public boolean update(Boar boar, BallGame game)
+    public boolean update(Boar boar, GameplayScreen gameplayScreen)
     {
         this.moveBy(velX, velY);
         changeDirectionIfBallHitSide();
         if(ballCollidesWithBoar(boar))
         {
-            game.addPoint();
+            gameplayScreen.getGame().addPoint();
+            gameplayScreen.changeToNextLevel();
             this.remove();
             return false;
         }

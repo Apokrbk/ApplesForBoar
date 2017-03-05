@@ -7,6 +7,7 @@ import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.Player;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.apok.games.ballgame.entities.levels.Level1;
+import com.apok.games.ballgame.entities.levels.Level2;
 import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 
-class GameplayScreen extends AbstractScreen{
+public class GameplayScreen extends AbstractScreen{
 
     private Player player;
     private Ball ball;
@@ -46,7 +47,9 @@ class GameplayScreen extends AbstractScreen{
 
     private void initLevels() {
         levels = new Stack<SetOfObstacles>();
-        levels.add(new Level1(stage));
+        levels.push(new Level2(stage));
+        levels.push(new Level1(stage));
+        levels.peek().addObstaclesToStage(stage);
     }
 
     private void initScoreLabel() {
@@ -81,18 +84,18 @@ class GameplayScreen extends AbstractScreen{
         super.render(delta);
         setInput();
         addBall();
-        levels.peek().updateObstacles();
+        ballOnScreen = levels.peek().updateObstacles(ballOnScreen,ball);
         boar.update();
         player.update(input);
         if(ballOnScreen)
-           ballOnScreen = ball.update(boar, game);
+           ballOnScreen = ball.update(boar, this);
         scoreLabel.setText("SCORE: "+ game.getScore());
         stage.act();
         spriteBatch.begin();
         stage.draw();
         spriteBatch.end();
     }
-    
+
     private void setInput() {
         input.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(input);
@@ -116,4 +119,13 @@ class GameplayScreen extends AbstractScreen{
     }
 
 
+    public BallGame getGame() {
+        return game;
+    }
+
+    public void changeToNextLevel() {
+        levels.peek().removeFromStage();
+        levels.pop();
+        levels.peek().addObstaclesToStage(stage);
+    }
 }

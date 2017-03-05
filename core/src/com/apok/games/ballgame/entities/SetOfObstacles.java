@@ -13,19 +13,28 @@ public abstract class SetOfObstacles {
     {
         obstacles = new ArrayList<Obstacle>();
         initObstacles();
-        addObstaclesToStage(stage);
     }
 
     protected abstract void initObstacles();
-    public void updateObstacles()
+    public boolean updateObstacles(boolean ballOnScreen, Ball ball)
     {
+        boolean result = ballOnScreen;
         for(Obstacle obstacle : obstacles)
         {
             obstacle.update();
+            if(ballOnScreen)
+            {
+                if(obstacle.collidesWithBall(ball))
+                {
+                    ball.remove();
+                    result = false;
+                }
+            }
         }
+        return result;
     }
 
-    protected void addObstaclesToStage(Stage stage)
+    public void addObstaclesToStage(Stage stage)
     {
         for(Obstacle obstacle : obstacles)
         {
@@ -34,4 +43,13 @@ public abstract class SetOfObstacles {
     }
 
 
+    public void removeFromStage()
+    {
+        {
+            for(Obstacle obstacle : obstacles)
+            {
+                obstacle.remove();
+            }
+        }
+    }
 }

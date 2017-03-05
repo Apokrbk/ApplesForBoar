@@ -8,10 +8,13 @@ import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.apok.games.ballgame.entities.levels.Level1;
 import com.apok.games.ballgame.entities.levels.Level2;
 import com.apok.games.ballgame.services.SoundService;
+import com.apok.games.ballgame.ui.Animation;
 import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import java.util.Stack;
@@ -26,6 +29,7 @@ public class GameplayScreen extends AbstractScreen{
     private ScoreLabel scoreLabel;
     private SetOfObstacles activeLevel;
     private SoundService soundService;
+    private Animation countDown;
 
     GameplayScreen(BallGame game) {
         super(game);
@@ -43,6 +47,7 @@ public class GameplayScreen extends AbstractScreen{
         initLevels();
         soundService = new SoundService();
         soundService.playBackgroundMusic();
+        countDown = new Animation(new TextureRegion(new Texture("countdown.png")), 3, 3.4f);
 
     }
 
@@ -92,6 +97,13 @@ public class GameplayScreen extends AbstractScreen{
         stage.act();
         spriteBatch.begin();
         stage.draw();
+        spriteBatch.end();
+        spriteBatch.begin();
+        if(!game.isPlaying())
+        {
+            countDown.update(delta);
+            spriteBatch.draw(countDown.getFrame(),100,300);
+        }
         spriteBatch.end();
     }
 

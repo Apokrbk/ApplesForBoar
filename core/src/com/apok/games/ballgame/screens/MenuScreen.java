@@ -27,7 +27,7 @@ public class MenuScreen extends AbstractScreen {
                     public void run() {
                         game.setPlaying(true);
                     }
-                }, 2);
+                }, 3);
             }
         });
         stage.addActor(menuBackground);

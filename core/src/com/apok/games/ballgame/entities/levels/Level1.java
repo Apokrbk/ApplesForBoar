@@ -4,6 +4,8 @@ import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import java.util.Stack;
+
 
 public class Level1 extends SetOfObstacles{
     public Level1() {
@@ -13,5 +15,10 @@ public class Level1 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
         obstacles.add(new Obstacle(0, 400, 100, 2, 0));
+    }
+
+    public SetOfObstacles nextLevel()
+    {
+        return new Level2();
     }
 }

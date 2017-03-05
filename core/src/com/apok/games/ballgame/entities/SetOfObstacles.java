@@ -3,6 +3,7 @@ package com.apok.games.ballgame.entities;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 
 public abstract class SetOfObstacles {
@@ -16,6 +17,7 @@ public abstract class SetOfObstacles {
     }
 
     protected abstract void initObstacles();
+    public abstract SetOfObstacles nextLevel();
     public void updateObstacles(Ball ball)
     {
         for(Obstacle obstacle : obstacles)

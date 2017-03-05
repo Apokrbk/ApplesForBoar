@@ -24,7 +24,7 @@ public class GameplayScreen extends AbstractScreen{
     private Vector3 input;
     private Boar boar;
     private ScoreLabel scoreLabel;
-    private Stack<SetOfObstacles> levels;
+    private SetOfObstacles activeLevel;
     private SoundService soundService;
 
     GameplayScreen(BallGame game) {
@@ -47,28 +47,8 @@ public class GameplayScreen extends AbstractScreen{
     }
 
     private void initLevels() {
-        levels = new Stack<SetOfObstacles>();
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.push(new Level2());
-        levels.push(new Level1());
-        levels.peek().addObstaclesToStage(stage);
+        activeLevel = new Level1();
+        activeLevel.addObstaclesToStage(stage);
     }
 
     private void initScoreLabel() {
@@ -103,7 +83,7 @@ public class GameplayScreen extends AbstractScreen{
         super.render(delta);
         setInput();
         addBall();
-        levels.peek().updateObstacles(ball);
+        activeLevel.updateObstacles(ball);
         boar.update();
         player.update(input);
         if(isBallOnStage())
@@ -146,9 +126,9 @@ public class GameplayScreen extends AbstractScreen{
 
     public void changeToNextLevel() {
         soundService.playChrum();
-        levels.peek().removeFromStage();
-        levels.pop();
-        levels.peek().addObstaclesToStage(stage);
+        activeLevel.removeFromStage();
+        activeLevel = activeLevel.nextLevel();
+        activeLevel.addObstaclesToStage(stage);
     }
 
 }

@@ -16,22 +16,19 @@ public abstract class SetOfObstacles {
     }
 
     protected abstract void initObstacles();
-    public boolean updateObstacles(boolean ballOnScreen, Ball ball)
+    public void updateObstacles(Ball ball)
     {
-        boolean result = ballOnScreen;
         for(Obstacle obstacle : obstacles)
         {
             obstacle.update();
-            if(ballOnScreen)
+            if(!(ball.getStage() == null))
             {
                 if(obstacle.collidesWithBall(ball))
                 {
                     ball.remove();
-                    result = false;
                 }
             }
         }
-        return result;
     }
 
     public void addObstaclesToStage(Stage stage)

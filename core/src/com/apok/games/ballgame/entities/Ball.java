@@ -18,6 +18,7 @@ public class Ball extends Image {
     private float velX;
     private float velY;
 
+    public Ball(){}
     public Ball(int x, int y, Vector3 input)
     {
         super(new Texture("apple.png"));

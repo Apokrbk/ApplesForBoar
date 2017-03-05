@@ -3,7 +3,6 @@ package com.apok.games.ballgame.screens;
 import com.apok.games.ballgame.BallGame;
 import com.apok.games.ballgame.entities.Ball;
 import com.apok.games.ballgame.entities.Boar;
-import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.Player;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.apok.games.ballgame.entities.levels.Level1;
@@ -14,7 +13,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 
@@ -25,8 +23,6 @@ public class GameplayScreen extends AbstractScreen{
     private Vector3 input;
     private Boar boar;
     private ScoreLabel scoreLabel;
-    private int balls = 15;
-    private boolean ballOnScreen = false;
     private Stack<SetOfObstacles> levels;
 
     GameplayScreen(BallGame game) {
@@ -36,6 +32,7 @@ public class GameplayScreen extends AbstractScreen{
     @Override
     protected void init() {
         input = new Vector3(0,0,0);
+        ball = new Ball();
         initBackground();
         initPlayer();
         initBoar();
@@ -84,11 +81,11 @@ public class GameplayScreen extends AbstractScreen{
         super.render(delta);
         setInput();
         addBall();
-        ballOnScreen = levels.peek().updateObstacles(ballOnScreen,ball);
+        levels.peek().updateObstacles(ball);
         boar.update();
         player.update(input);
-        if(ballOnScreen)
-           ballOnScreen = ball.update(boar, this);
+        if(isBallOnStage())
+            ball.update(boar, this);
         scoreLabel.setText("SCORE: "+ game.getScore());
         stage.act();
         spriteBatch.begin();
@@ -104,8 +101,6 @@ public class GameplayScreen extends AbstractScreen{
     private void addBall() {
         if(isShootingAllowed())
         {
-            balls--;
-            ballOnScreen = true;
             ball = new Ball((int)(player.getX()),
                     (int)(player.getY()),
                     input);
@@ -115,9 +110,13 @@ public class GameplayScreen extends AbstractScreen{
 
     private boolean isShootingAllowed()
     {
-        return Gdx.input.isTouched() && input.y > 140 && !ballOnScreen && balls>0 && game.isPlaying();
+        return Gdx.input.isTouched() && input.y > 140 && !isBallOnStage() && game.isPlaying();
     }
 
+    private boolean isBallOnStage()
+    {
+        return !(ball.getStage() == null);
+    }
 
     public BallGame getGame() {
         return game;

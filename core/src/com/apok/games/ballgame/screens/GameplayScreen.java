@@ -109,6 +109,7 @@ public class GameplayScreen extends AbstractScreen{
             game.getScoreService().resetGameScore();
             game.setPlaying(false);
             soundService.stopBackgroundMusic();
+            soundService.playGameoverSound();
         }
         System.out.println("LICZBA JABLEK: " + balls);
 

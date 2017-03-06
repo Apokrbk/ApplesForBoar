@@ -10,6 +10,7 @@ import com.badlogic.gdx.audio.Sound;
 
 public class SoundService {
     private Sound chrumSound;
+    private Sound gameoverSound;
     private Music backgroundMusic;
 
     public SoundService()
@@ -19,6 +20,7 @@ public class SoundService {
 
     private void init() {
         chrumSound = Gdx.audio.newSound(Gdx.files.internal("chrum.mp3"));
+        gameoverSound = Gdx.audio.newSound(Gdx.files.internal("gameoversound.mp3"));
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("backgroundmusic.mp3"));
         backgroundMusic.setVolume(0.5f);
     }
@@ -40,6 +42,6 @@ public class SoundService {
 
     public void playGameoverSound()
     {
-
+        gameoverSound.play();
     }
 }

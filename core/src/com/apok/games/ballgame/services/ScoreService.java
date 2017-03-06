@@ -3,10 +3,6 @@ package com.apok.games.ballgame.services;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
-/**
- * Created by Apok on 05.03.2017.
- */
-
 public class ScoreService {
 
     private static final String GAME_PREFS = "com.apok.boar.prefs";

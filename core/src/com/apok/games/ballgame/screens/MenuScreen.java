@@ -21,21 +21,38 @@ public class MenuScreen extends AbstractScreen {
     @Override
     protected void init() {
         myFont = new MyFont();
+        Image highscoreLabel = initHighscoreLabel();
+        final Image menuBackground = initBackground();
+        final PlayButton playButton = initPlayButton();
+        addActorsToStage(highscoreLabel, menuBackground, playButton);
+    }
+
+    private Image initBackground() {
+        return new Image(new Texture("menubackground.png"));
+    }
+
+    private Image initHighscoreLabel() {
         Image highscoreLabel = new Image(new Texture("highscore.png"));
         highscoreLabel.setPosition(40,220);
-        final Image menuBackground = new Image(new Texture("menubackground.png"));
-        final PlayButton playButton = new PlayButton(new IClickCallback() {
-            @Override
-            public void onClick() {
-                game.setScreen(new GameplayScreen(game));
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        game.setPlaying(true);
-                    }
-                }, 3);
-            }
-        });
+        return highscoreLabel;
+    }
+
+    private PlayButton initPlayButton() {
+        return new PlayButton(new IClickCallback() {
+                @Override
+                public void onClick() {
+                    game.setScreen(new GameplayScreen(game));
+                    Timer.schedule(new Timer.Task() {
+                        @Override
+                        public void run() {
+                            game.setPlaying(true);
+                        }
+                    }, 3);
+                }
+            });
+    }
+
+    private void addActorsToStage(Image highscoreLabel, Image menuBackground, PlayButton playButton) {
         stage.addActor(menuBackground);
         stage.addActor(playButton);
         stage.addActor(highscoreLabel);

@@ -7,11 +7,8 @@ import com.apok.games.ballgame.ui.MyFont;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-/**
- * Created by Apok on 06.03.2017.
- */
 
-public class GameoverScreen extends AbstractScreen{
+class GameoverScreen extends AbstractScreen{
 
     private MyFont myFont;
     private int score;
@@ -24,15 +21,28 @@ public class GameoverScreen extends AbstractScreen{
     @Override
     protected void init() {
         myFont = new MyFont();
+        Image scoreLabel = initScoreLabel();
+        final Image background = new Image(new Texture("menubackground.png"));
+        final GameoverButton gameoverButton = initGameoverButton();
+        addActorsToStage(scoreLabel, background, gameoverButton);
+    }
+
+    private Image initScoreLabel() {
         Image scoreLabel = new Image(new Texture("scorelabel.png"));
         scoreLabel.setPosition(40, 230);
-        final Image background = new Image(new Texture("menubackground.png"));
-        final GameoverButton gameoverButton = new GameoverButton(new IClickCallback() {
-            @Override
-            public void onClick() {
-                game.setScreen(new MenuScreen(game));
-            }
-        });
+        return scoreLabel;
+    }
+
+    private GameoverButton initGameoverButton() {
+        return new GameoverButton(new IClickCallback() {
+                @Override
+                public void onClick() {
+                    game.setScreen(new MenuScreen(game));
+                }
+            });
+    }
+
+    private void addActorsToStage(Image scoreLabel, Image background, GameoverButton gameoverButton) {
         stage.addActor(background);
         stage.addActor(gameoverButton);
         stage.addActor(scoreLabel);

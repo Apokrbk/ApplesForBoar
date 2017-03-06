@@ -2,16 +2,10 @@ package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 
-import java.util.Stack;
 
-/**
- * Created by Apok on 05.03.2017.
- */
-
-public class Level2 extends SetOfObstacles {
-    public Level2() {
+class Level2 extends SetOfObstacles {
+    Level2() {
         super();
     }
 

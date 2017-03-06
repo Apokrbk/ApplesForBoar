@@ -1,8 +1,6 @@
 package com.apok.games.ballgame.entities;
 
-import com.apok.games.ballgame.BallGame;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
@@ -26,7 +24,7 @@ public class Obstacle extends Image{
         bounds.setPosition(this.getX(), this.getY());
     }
 
-    public boolean collidesWithBall(Ball ball)
+    boolean collidesWithBall(Ball ball)
     {
         Rectangle ballRectangle = new Rectangle(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
         return bounds.overlaps(ballRectangle);

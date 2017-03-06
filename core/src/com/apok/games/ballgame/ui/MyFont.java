@@ -5,10 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
-/**
- * Created by Apok on 05.03.2017.
- */
-
 public class MyFont {
     private Array<TextureRegion> digits;
     private int digitWidth;

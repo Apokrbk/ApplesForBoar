@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 
-public abstract class AbstractScreen implements Screen {
+abstract class AbstractScreen implements Screen {
     BallGame game;
     Stage stage;
     OrthographicCamera camera;

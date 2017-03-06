@@ -39,24 +39,20 @@ public class Ball extends Image {
         velX = velY / ratio;
     }
 
-    public boolean update(Boar boar, GameplayScreen gameplayScreen)
+    public void update(Boar boar, GameplayScreen gameplayScreen)
     {
         this.moveBy(velX, velY);
         changeDirectionIfBallHitSide();
         if(ballCollidesWithBoar(boar))
         {
             gameplayScreen.getGame().getScoreService().addPoint();
-            gameplayScreen.getGame().getScoreService().setHighscore();
             gameplayScreen.changeToNextLevel();
             this.remove();
-            return false;
         }
         else if(this.getY()> BallGame.HEIGHT)
         {
             this.remove();
-            return false;
         }
-        return true;
     }
 
     private void changeDirectionIfBallHitSide() {

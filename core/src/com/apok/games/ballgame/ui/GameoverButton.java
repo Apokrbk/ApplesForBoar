@@ -7,10 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
-/**
- * Created by Apok on 06.03.2017.
- */
-
 public class GameoverButton  extends ImageButton {
 
     public GameoverButton(final IClickCallback callback) {

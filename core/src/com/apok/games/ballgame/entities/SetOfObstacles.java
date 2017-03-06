@@ -3,7 +3,6 @@ package com.apok.games.ballgame.entities;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
-import java.util.Stack;
 
 
 public abstract class SetOfObstacles {
@@ -23,32 +22,25 @@ public abstract class SetOfObstacles {
         for(Obstacle obstacle : obstacles)
         {
             obstacle.update();
-            if(!(ball.getStage() == null))
-            {
-                if(obstacle.collidesWithBall(ball))
-                {
+            if(ballHitObstacle(ball, obstacle))
                     ball.remove();
-                }
-            }
+
         }
+    }
+
+    private boolean ballHitObstacle(Ball ball, Obstacle obstacle) {
+        return !(ball.getStage() == null) && obstacle.collidesWithBall(ball);
     }
 
     public void addObstaclesToStage(Stage stage)
     {
         for(Obstacle obstacle : obstacles)
-        {
             stage.addActor(obstacle);
-        }
     }
-
 
     public void removeFromStage()
     {
-        {
-            for(Obstacle obstacle : obstacles)
-            {
-                obstacle.remove();
-            }
-        }
+        for(Obstacle obstacle : obstacles)
+            obstacle.remove();
     }
 }

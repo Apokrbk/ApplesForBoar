@@ -4,10 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
-/**
- * Created by Apok on 05.03.2017.
- */
-
 public class SoundService {
     private Sound chrumSound;
     private Sound gameoverSound;

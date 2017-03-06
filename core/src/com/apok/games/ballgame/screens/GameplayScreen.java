@@ -6,20 +6,16 @@ import com.apok.games.ballgame.entities.Boar;
 import com.apok.games.ballgame.entities.Player;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.apok.games.ballgame.entities.levels.Level1;
-import com.apok.games.ballgame.entities.levels.Level2;
 import com.apok.games.ballgame.services.SoundService;
 import com.apok.games.ballgame.ui.Animation;
 import com.apok.games.ballgame.ui.MyFont;
 import com.apok.games.ballgame.ui.QuantityOfBalls;
-import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import java.util.Stack;
 
 
 public class GameplayScreen extends AbstractScreen{
@@ -41,20 +37,44 @@ public class GameplayScreen extends AbstractScreen{
 
     @Override
     protected void init() {
-        input = new Vector3(0,0,0);
-        ball = new Ball();
+        initInput();
+        initBall();
         initBackground();
         initPlayer();
         initBoar();
         initScoreLabelBackground();
         initLevels();
-        soundService = new SoundService();
-        soundService.playBackgroundMusic();
-        countDown = new Animation(new TextureRegion(new Texture("countdown.png")), 3, 3.4f);
-        myFont = new MyFont();
+        initSoundService();
+        initCountDown();
+        initMyFont();
+        initQuantityOfBalls();
+
+    }
+
+    private void initQuantityOfBalls() {
         balls = 3;
         quantityOfBalls = new QuantityOfBalls();
+    }
 
+    private void initMyFont() {
+        myFont = new MyFont();
+    }
+
+    private void initCountDown() {
+        countDown = new Animation(new TextureRegion(new Texture("countdown.png")), 3, 3.4f);
+    }
+
+    private void initInput() {
+        input = new Vector3(0,0,0);
+    }
+
+    private void initBall() {
+        ball = new Ball();
+    }
+
+    private void initSoundService() {
+        soundService = new SoundService();
+        soundService.playBackgroundMusic();
     }
 
     private void initLevels() {
@@ -88,34 +108,48 @@ public class GameplayScreen extends AbstractScreen{
     {
         super.render(delta);
         setInput();
-        addBall();
+        addBallWhenPlayerClicksTheScreen();
+        updateEntities();
+        drawWorld(delta);
+        if(isGameOver())
+            gameOver();
+    }
+
+    private void drawWorld(float delta) {
+        spriteBatch.begin();
+        stage.draw();
+        spriteBatch.end();
+        spriteBatch.begin();
+        drawCountdown(delta);
+        myFont.drawScore(game.getScoreService().getPoints(), 105, 22, spriteBatch);
+        quantityOfBalls.drawBalls(spriteBatch, balls);
+        spriteBatch.end();
+    }
+
+    private void drawCountdown(float delta) {
+        if(!game.isPlaying())
+        {
+            countDown.update(delta);
+            spriteBatch.draw(countDown.getFrame(),72,240);
+        }
+    }
+
+    private void updateEntities() {
         activeLevel.updateObstacles(ball);
         boar.update();
         player.update(input);
         if(isBallOnStage())
             ball.update(boar, this);
         stage.act();
-        spriteBatch.begin();
-        stage.draw();
-        spriteBatch.end();
-        spriteBatch.begin();
-        if(!game.isPlaying())
-        {
-            countDown.update(delta);
-            spriteBatch.draw(countDown.getFrame(),72,240);
-        }
-        myFont.drawScore(game.getScoreService().getPoints(), 105, 22, spriteBatch);
-        quantityOfBalls.drawBalls(spriteBatch, balls);
-        spriteBatch.end();
-        if(isGameover())
-        {
-            game.setScreen(new GameoverScreen(game, game.getScoreService().getPoints()));
-            game.getScoreService().resetGameScore();
-            game.setPlaying(false);
-            soundService.stopBackgroundMusic();
-            soundService.playGameoverSound();
-        }
+    }
 
+    private void gameOver() {
+        game.getScoreService().setHighscore();
+        game.setScreen(new GameoverScreen(game, game.getScoreService().getPoints()));
+        game.getScoreService().resetGameScore();
+        game.setPlaying(false);
+        soundService.stopBackgroundMusic();
+        soundService.playGameoverSound();
     }
 
     private void setInput() {
@@ -123,7 +157,7 @@ public class GameplayScreen extends AbstractScreen{
         camera.unproject(input);
     }
 
-    private void addBall() {
+    private void addBallWhenPlayerClicksTheScreen() {
         if(isShootingAllowed())
         {
             balls--;
@@ -134,14 +168,14 @@ public class GameplayScreen extends AbstractScreen{
         }
     }
 
-    private boolean isGameover()
+    private boolean isGameOver()
     {
         return (!isBallOnStage() && balls ==0);
     }
 
     private boolean isShootingAllowed()
     {
-        return Gdx.input.isTouched() && input.y > 140 && !isBallOnStage() && game.isPlaying();
+        return Gdx.input.isTouched() && input.y > 160 && !isBallOnStage() && game.isPlaying();
     }
 
     private boolean isBallOnStage()

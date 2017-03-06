@@ -24,7 +24,7 @@ public class GameoverScreen extends AbstractScreen{
     @Override
     protected void init() {
         myFont = new MyFont();
-        Image scoreLabel = new Image(new Texture("scorelabel"));
+        Image scoreLabel = new Image(new Texture("scorelabel.png"));
         scoreLabel.setPosition(40, 240);
         final Image background = new Image(new Texture("menubackground.png"));
         final GameoverButton gameoverButton = new GameoverButton(new IClickCallback() {

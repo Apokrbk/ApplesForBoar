@@ -31,6 +31,7 @@ public class GameplayScreen extends AbstractScreen{
     private SoundService soundService;
     private Animation countDown;
     private MyFont myFont;
+    private int balls;
 
     GameplayScreen(BallGame game) {
         super(game);
@@ -49,6 +50,7 @@ public class GameplayScreen extends AbstractScreen{
         soundService.playBackgroundMusic();
         countDown = new Animation(new TextureRegion(new Texture("countdown.png")), 3, 3.4f);
         myFont = new MyFont();
+        balls = 3;
 
     }
 
@@ -101,6 +103,13 @@ public class GameplayScreen extends AbstractScreen{
         }
         myFont.drawScore(game.getScoreService().getPoints(), 105, 22, spriteBatch);
         spriteBatch.end();
+        if(isGameover())
+        {
+            game.setScreen(new GameoverScreen(game, game.getScoreService().getPoints()));
+            game.getScoreService().resetGameScore();
+        }
+        System.out.println("LICZBA JABLEK: " + balls);
+
     }
 
     private void setInput() {
@@ -111,11 +120,17 @@ public class GameplayScreen extends AbstractScreen{
     private void addBall() {
         if(isShootingAllowed())
         {
+            balls--;
             ball = new Ball((int)(player.getX()),
                     (int)(player.getY()),
                     input);
             stage.addActor(ball);
         }
+    }
+
+    private boolean isGameover()
+    {
+        return (!isBallOnStage() && balls ==0);
     }
 
     private boolean isShootingAllowed()
@@ -133,6 +148,7 @@ public class GameplayScreen extends AbstractScreen{
     }
 
     public void changeToNextLevel() {
+        balls = 3;
         soundService.playChrum();
         activeLevel.removeFromStage();
         activeLevel = activeLevel.nextLevel();

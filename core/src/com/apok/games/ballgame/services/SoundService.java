@@ -33,4 +33,13 @@ public class SoundService {
         backgroundMusic.play();
         backgroundMusic.setLooping(true);
     }
+
+    public void stopBackgroundMusic() {
+        backgroundMusic.stop();
+    }
+
+    public void playGameoverSound()
+    {
+
+    }
 }

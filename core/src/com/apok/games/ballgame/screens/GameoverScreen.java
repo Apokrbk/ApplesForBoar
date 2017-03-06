@@ -25,7 +25,7 @@ public class GameoverScreen extends AbstractScreen{
     protected void init() {
         myFont = new MyFont();
         Image scoreLabel = new Image(new Texture("scorelabel.png"));
-        scoreLabel.setPosition(40, 240);
+        scoreLabel.setPosition(40, 230);
         final Image background = new Image(new Texture("menubackground.png"));
         final GameoverButton gameoverButton = new GameoverButton(new IClickCallback() {
             @Override
@@ -45,7 +45,7 @@ public class GameoverScreen extends AbstractScreen{
         stage.draw();
         spriteBatch.end();
         spriteBatch.begin();
-        myFont.drawScore(score, 253, 232, spriteBatch);
+        myFont.drawScore(score, 135, 242, spriteBatch);
         spriteBatch.end();
     }
 

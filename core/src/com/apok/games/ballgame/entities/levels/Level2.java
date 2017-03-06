@@ -17,11 +17,12 @@ public class Level2 extends SetOfObstacles {
 
     @Override
     protected void initObstacles() {
-        obstacles.add(new Obstacle(0, 300, 100, 3, 0));
+        obstacles.add(new Obstacle(0, 300, 150));
+        obstacles.add(new Obstacle(282, 300, 150));
     }
 
     public SetOfObstacles nextLevel()
     {
-        return new Level1();
+        return new Level3();
     }
 }

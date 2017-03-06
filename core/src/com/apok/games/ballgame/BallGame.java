@@ -20,7 +20,6 @@ public class BallGame extends Game{
 	@Override
 	public void create () {
 		scoreService = new ScoreService();
-		System.out.println("HIGHSCORE: "+ scoreService.getHighscore());
 		setScreen(new MenuScreen(this));
 	}
 

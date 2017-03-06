@@ -14,7 +14,12 @@ public class Level1 extends SetOfObstacles{
 
     @Override
     protected void initObstacles() {
-        obstacles.add(new Obstacle(0, 400, 100, 2, 0));
+        obstacles.add(new Obstacle(116, 300, 200){
+            public void update()
+            {
+                super.update();
+            }
+        });
     }
 
     public SetOfObstacles nextLevel()

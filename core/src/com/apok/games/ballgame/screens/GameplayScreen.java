@@ -115,7 +115,6 @@ public class GameplayScreen extends AbstractScreen{
             soundService.stopBackgroundMusic();
             soundService.playGameoverSound();
         }
-        System.out.println("LICZBA JABLEK: " + balls);
 
     }
 

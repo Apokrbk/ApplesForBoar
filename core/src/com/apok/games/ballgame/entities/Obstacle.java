@@ -11,28 +11,19 @@ public class Obstacle extends Image{
     private static final int HEIGHT = 20;
 
     private Rectangle bounds;
-    private int velX;
-    private int velY;
-    private int width;
 
-    public Obstacle(int x, int y, int width, int velX, int velY)
+    public Obstacle(int x, int y, int width)
     {
         super(new Texture("obstacle.png"));
-        this.width = width;
         this.setOrigin(width/2, HEIGHT/2);
         this.setSize(width,HEIGHT);
         this.setPosition(x, y);
         bounds = new Rectangle(x, y, width, HEIGHT);
-        this.velX = velX;
-        this.velY = velY;
     }
 
     public void update()
     {
-        this.moveBy(velX, velY);
-        bounds.setPosition(bounds.getX() + velX, bounds.getY() + velY);
-        if(getX() < 0 || getX() > BallGame.WIDTH - width)
-            velX*=-1;
+        bounds.setPosition(this.getX(), this.getY());
     }
 
     public boolean collidesWithBall(Ball ball)

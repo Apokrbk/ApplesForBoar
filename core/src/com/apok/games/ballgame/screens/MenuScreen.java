@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.Timer;
 
 public class MenuScreen extends AbstractScreen {
 
-    private Image highscoreLabel;
     private MyFont myFont;
 
     public MenuScreen(BallGame game) {
@@ -22,7 +21,7 @@ public class MenuScreen extends AbstractScreen {
     @Override
     protected void init() {
         myFont = new MyFont();
-        highscoreLabel = new Image(new Texture("highscore.png"));
+        Image highscoreLabel = new Image(new Texture("highscore.png"));
         highscoreLabel.setPosition(40,220);
         final Image menuBackground = new Image(new Texture("menubackground.png"));
         final PlayButton playButton = new PlayButton(new IClickCallback() {

@@ -24,7 +24,7 @@ public class Obstacle extends Image{
         bounds.setPosition(this.getX(), this.getY());
     }
 
-    boolean collidesWithBall(Ball ball)
+    protected boolean collidesWithBall(Ball ball)
     {
         Rectangle ballRectangle = new Rectangle(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
         return bounds.overlaps(ballRectangle);

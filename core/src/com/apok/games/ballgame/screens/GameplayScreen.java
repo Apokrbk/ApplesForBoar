@@ -10,6 +10,7 @@ import com.apok.games.ballgame.entities.levels.Level2;
 import com.apok.games.ballgame.services.SoundService;
 import com.apok.games.ballgame.ui.Animation;
 import com.apok.games.ballgame.ui.MyFont;
+import com.apok.games.ballgame.ui.QuantityOfBalls;
 import com.apok.games.ballgame.ui.ScoreLabel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,6 +33,7 @@ public class GameplayScreen extends AbstractScreen{
     private Animation countDown;
     private MyFont myFont;
     private int balls;
+    private QuantityOfBalls quantityOfBalls;
 
     GameplayScreen(BallGame game) {
         super(game);
@@ -51,6 +53,7 @@ public class GameplayScreen extends AbstractScreen{
         countDown = new Animation(new TextureRegion(new Texture("countdown.png")), 3, 3.4f);
         myFont = new MyFont();
         balls = 3;
+        quantityOfBalls = new QuantityOfBalls();
 
     }
 
@@ -102,6 +105,7 @@ public class GameplayScreen extends AbstractScreen{
             spriteBatch.draw(countDown.getFrame(),72,240);
         }
         myFont.drawScore(game.getScoreService().getPoints(), 105, 22, spriteBatch);
+        quantityOfBalls.drawBalls(spriteBatch, balls);
         spriteBatch.end();
         if(isGameover())
         {

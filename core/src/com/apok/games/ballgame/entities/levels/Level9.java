@@ -1,22 +1,21 @@
 package com.apok.games.ballgame.entities.levels;
 
-import com.apok.games.ballgame.entities.RotaryObstacle;
+import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 
 /**
  * Created by Apok on 07.03.2017.
  */
 
-public class Level7 extends SetOfObstacles{
+public class Level9 extends SetOfObstacles {
     @Override
     protected void initObstacles() {
-        obstacles.add(new RotaryObstacle(0, 320, 216, 0,0, -2));
-        obstacles.add(new RotaryObstacle(216, 320, 216, 0,0, 2));
-
+        obstacles.add(new Obstacle(0, 320, 150, 3, 0));
+        obstacles.add(new Obstacle(282, 320, 150, -3, 0));
     }
 
     @Override
     public SetOfObstacles nextLevel() {
-        return new Level8();
+        return new Level10();
     }
 }

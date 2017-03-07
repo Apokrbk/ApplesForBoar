@@ -28,6 +28,16 @@ public class Obstacle extends Image{
     {
         this.moveBy(velX, velY);
         bounds.setPosition(this.getX(), this.getY());
+        changeVelX();
+        changeVelY();
+    }
+
+    protected void changeVelY() {
+        if(getY() < 140 || getY() > 540)
+            velY*=-1;
+    }
+
+    protected void changeVelX() {
         if(getX()<0 || getX()> BallGame.WIDTH - getWidth())
             velX*=-1;
     }

@@ -30,12 +30,12 @@ class Level6 extends SetOfObstacles {
             protected boolean collidesWithBall(Ball ball)
             {
                 Polygon obstaclePolygon = new Polygon(new float[]{0, 0,
-                                                            WIDTH, 0,
-                                                            WIDTH, Obstacle.HEIGHT,
-                                                            0, Obstacle.HEIGHT});
-                obstaclePolygon.setOrigin(WIDTH/2, Obstacle.HEIGHT/2);
+                                                            WIDTH+ball.getWidth(), 0,
+                                                            WIDTH+ball.getWidth(), Obstacle.HEIGHT+ball.getHeight(),
+                                                            0, Obstacle.HEIGHT+ball.getHeight()});
+                obstaclePolygon.setOrigin((WIDTH+ball.getWidth())/2, (Obstacle.HEIGHT+ball.getHeight())/2);
                 obstaclePolygon.setRotation(this.getRotation());
-                obstaclePolygon.setPosition(STARTING_X, STARTING_Y);
+                obstaclePolygon.setPosition(STARTING_X-ball.getWidth()/2, STARTING_Y-ball.getHeight()/2);
                 return obstaclePolygon.contains(ball.getX()+ball.getWidth()/2, ball.getY()+ball.getHeight()/2);
             }
         });
@@ -43,6 +43,6 @@ class Level6 extends SetOfObstacles {
 
     @Override
     public SetOfObstacles nextLevel() {
-        return new Level1();
+        return new Level6();
     }
 }

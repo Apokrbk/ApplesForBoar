@@ -23,6 +23,6 @@ public class Level10 extends SetOfObstacles{
 
     @Override
     public SetOfObstacles nextLevel() {
-        return new Level10();
+        return new Level11();
     }
 }

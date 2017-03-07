@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Polygon;
  */
 
 public class RotaryObstacle extends Obstacle{
-    private int rotation;
+    protected int rotation;
     public RotaryObstacle(int x, int y, int width, int velX, int velY, int rotation) {
         super(x, y, width, velX, velY);
         this.rotation = rotation;
@@ -17,6 +17,7 @@ public class RotaryObstacle extends Obstacle{
     {
         this.moveBy(velX, velY);
         this.rotateBy(rotation);
+        changeRotation();
     }
     protected boolean collidesWithBall(Ball ball)
     {
@@ -28,6 +29,11 @@ public class RotaryObstacle extends Obstacle{
         obstaclePolygon.setRotation(this.getRotation());
         obstaclePolygon.setPosition(getX()-ball.getWidth()/2, getY()-ball.getHeight()/2);
         return obstaclePolygon.contains(ball.getX()+ball.getWidth()/2, ball.getY()+ball.getHeight()/2);
+    }
+
+    protected void changeRotation()
+    {
+
     }
 
 }

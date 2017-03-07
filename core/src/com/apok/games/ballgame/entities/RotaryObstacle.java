@@ -15,7 +15,7 @@ public class RotaryObstacle extends Obstacle{
     }
     public void update()
     {
-        this.moveBy(velX, velY);
+        super.update();
         this.rotateBy(rotation);
         changeRotation();
     }

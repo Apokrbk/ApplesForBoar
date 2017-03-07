@@ -11,11 +11,11 @@ class Level4 extends SetOfObstacles {
 
     @Override
     protected void initObstacles() {
-        obstacles.add(new Obstacle(0, 150, 120));
-        obstacles.add(new Obstacle(312, 150, 120));
-        obstacles.add(new Obstacle(156, 300, 120));
-        obstacles.add(new Obstacle(0, 450, 120));
-        obstacles.add(new Obstacle(312, 450, 120));
+        obstacles.add(new Obstacle(0, 150, 120, 0,0));
+        obstacles.add(new Obstacle(312, 150, 120,0,0));
+        obstacles.add(new Obstacle(156, 300, 120,0,0));
+        obstacles.add(new Obstacle(0, 450, 120,0,0));
+        obstacles.add(new Obstacle(312, 450, 120,0,0));
 
     }
 

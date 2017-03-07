@@ -11,8 +11,8 @@ class Level3 extends SetOfObstacles{
 
     @Override
     protected void initObstacles() {
-        obstacles.add(new Obstacle(0, 240, 216));
-        obstacles.add(new Obstacle(216, 440, 216));
+        obstacles.add(new Obstacle(0, 240, 216, 0 ,0));
+        obstacles.add(new Obstacle(216, 440, 216, 0,0));
     }
 
     @Override

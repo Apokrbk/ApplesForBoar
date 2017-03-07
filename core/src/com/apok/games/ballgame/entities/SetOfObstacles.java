@@ -43,4 +43,5 @@ public abstract class SetOfObstacles {
         for(Obstacle obstacle : obstacles)
             obstacle.remove();
     }
+
 }

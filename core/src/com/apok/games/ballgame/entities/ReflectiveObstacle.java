@@ -25,7 +25,12 @@ public class ReflectiveObstacle extends Obstacle{
         if(bounds.overlaps(ballRectangle))
         {
             if(ball.getY()+ball.getHeight()/2 > this.getY() && ball.getX() < this.getY()+this.getHeight()-ball.getHeight()/2)
+            {
                 ball.reverseDirection();
+                return false;
+            }
+            else
+                return true;
         }
         return false;
     }

@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class Ball extends Image {
     private static final int WIDTH = 40;
     private static final int HEIGHT = 40;
-    private static final int BASIC_VELOCITY = 17;
+    private static final int BASIC_VELOCITY = 14;
 
     private float velX;
     private float velY;

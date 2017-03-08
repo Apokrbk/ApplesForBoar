@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 
 public class ReflectiveObstacle extends Obstacle{
-    private static final int WIDTH = 20;
+    private static final int WIDTH = 10;
     public ReflectiveObstacle(int x, int y, int height, int velX, int velY) {
         super(new Texture("reflectiveobstacle.png"));
         this.setOrigin(WIDTH/2, height/2);
@@ -24,7 +24,7 @@ public class ReflectiveObstacle extends Obstacle{
         Rectangle ballRectangle = new Rectangle(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
         if(bounds.overlaps(ballRectangle))
         {
-            if(ball.getY()+ball.getHeight()/2 > this.getY() && ball.getX() < this.getY()+this.getHeight()-ball.getHeight()/2)
+            if(ball.getY()+ball.getHeight()/2 > this.getY() && ball.getY() < this.getY()+this.getHeight()-ball.getHeight()/2)
             {
                 ball.reverseDirection();
                 return false;

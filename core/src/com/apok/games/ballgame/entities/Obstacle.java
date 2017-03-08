@@ -9,9 +9,14 @@ public class Obstacle extends Image{
 
     protected static final int HEIGHT = 20;
 
-    private Rectangle bounds;
+    protected Rectangle bounds;
     protected int velX;
     protected int velY;
+
+    protected Obstacle(Texture texture)
+    {
+        super(texture);
+    }
 
     public Obstacle(int x, int y, int width, int velX, int velY)
     {

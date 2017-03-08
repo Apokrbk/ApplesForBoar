@@ -57,7 +57,12 @@ public class Ball extends Image {
 
     private void changeDirectionIfBallHitSide() {
         if(this.getX() < 0 || this.getX() > BallGame.WIDTH - WIDTH)
-            velX *= -1;
+            reverseDirection();
+    }
+
+    public void reverseDirection()
+    {
+        velX *= -1;
     }
 
     private boolean ballCollidesWithBoar(Boar boar)

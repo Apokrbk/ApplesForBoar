@@ -16,8 +16,10 @@ import com.google.android.gms.ads.AdView;
 public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
+		 super.onCreate(savedInstanceState);
+        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+        initialize(new BallGame(), config);
+        /*
 		RelativeLayout layout = new RelativeLayout(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -40,6 +42,9 @@ public class AndroidLauncher extends AndroidApplication {
         adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
         layout.addView(adView, adParams);
-        setContentView(layout);
+        setContentView(layout); */
+
+
+
 	}
 }

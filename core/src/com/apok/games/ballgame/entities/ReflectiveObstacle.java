@@ -24,7 +24,7 @@ public class ReflectiveObstacle extends Obstacle{
         Rectangle ballRectangle = new Rectangle(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
         if(bounds.overlaps(ballRectangle))
         {
-            if(ball.getY()+ball.getHeight()/2 > this.getY() && ball.getY() < this.getY()+this.getHeight()-ball.getHeight()/2)
+            if(ball.getY()+ball.getHeight()/2 > this.getY() && ball.getY() < this.getY()+this.getHeight())
             {
                 ball.reverseDirection();
                 return false;

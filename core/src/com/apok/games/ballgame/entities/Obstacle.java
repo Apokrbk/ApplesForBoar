@@ -21,6 +21,10 @@ public class Obstacle extends Image{
     public Obstacle(int x, int y, int width, int velX, int velY)
     {
         super(new Texture("obstacle.png"));
+        initObstacle(x, y, width, velX, velY);
+    }
+
+    protected void initObstacle(int x, int y, int width, int velX, int velY) {
         this.setOrigin(width/2, HEIGHT/2);
         this.setSize(width,HEIGHT);
         this.setPosition(x, y);

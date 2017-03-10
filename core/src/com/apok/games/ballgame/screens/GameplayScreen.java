@@ -189,6 +189,12 @@ public class GameplayScreen extends AbstractScreen{
 
     public void changeToNextLevel() {
         balls = 3;
+        if(game.getScoreService().getPoints() == 5)
+        {
+            player.setSize(30,30);
+            player.setOrigin(15,15);
+            Ball.makeBallSmaller();
+        }
         soundService.playChrum();
         activeLevel.removeFromStage();
         activeLevel = activeLevel.nextLevel();

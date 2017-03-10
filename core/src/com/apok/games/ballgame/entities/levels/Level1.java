@@ -15,6 +15,6 @@ public class Level1 extends SetOfObstacles{
 
     public SetOfObstacles nextLevel()
     {
-        return new Level2();
+        return new Level27();
     }
 }

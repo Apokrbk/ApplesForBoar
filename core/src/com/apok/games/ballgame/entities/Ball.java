@@ -84,4 +84,8 @@ public class Ball extends Image {
         this.addAction(rotation);
     }
 
+    public static void setToStartingSize() {
+        WIDTH = 40;
+        HEIGHT = 40;
+    }
 }

@@ -54,6 +54,7 @@ public class GameplayScreen extends AbstractScreen{
     private void initQuantityOfBalls() {
         balls = 3;
         quantityOfBalls = new QuantityOfBalls();
+        Ball.setToStartingSize();
     }
 
     private void initMyFont() {

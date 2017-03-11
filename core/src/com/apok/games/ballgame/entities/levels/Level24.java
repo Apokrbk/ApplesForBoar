@@ -16,14 +16,14 @@ public class Level24 extends SetOfObstacles{
         obstacles.add(new ReflectiveObstacle(211, 150, 390, 0, 0));
         obstacles.add(new ReflectiveObstacle(100, 150, 390, 0, 0));
         obstacles.add(new ReflectiveObstacle(322, 150, 390, 0, 0));
-        obstacles.add(new Obstacle(0, 540, 108, 0 ,0){
+        obstacles.add(new Obstacle(0, 440, 108, 0 ,0){
             @Override
             protected void initObstacle(int x, int y, int width, int velX, int velY) {
                 super.initObstacle(x, y, width, velX, velY);
                 Timer.schedule(new Timer.Task() {
                     @Override
                     public void run() {
-                        setPosition(MathUtils.random(0,3)*108, 540);
+                        setPosition(MathUtils.random(0,3)*108, 440);
                     }
                 }, 0, 0.5f);
             }

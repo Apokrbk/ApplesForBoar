@@ -29,23 +29,23 @@ public class Level32 extends SetOfObstacles{
                     velX*=-1;
             }
         });
-        RotaryObstacle obstacle = new RotaryObstacle(-10, 490, 130, 2, 0,0){
+        RotaryObstacle obstacle = new RotaryObstacle(-15, 490, 130, 2, 0,0){
             @Override
             protected void changeVelX() {
-                if(getX() < -10)
+                if(getX() < -15)
                     velX*=-1;
-                else if(getX() > 222)
+                else if(getX() > 217)
                     velX*=-1;
             }
         };
         obstacle.setRotation(35);
         obstacles.add(obstacle);
-        RotaryObstacle obstacle2 = new RotaryObstacle(90, 410, 130, 2, 0,0){
+        RotaryObstacle obstacle2 = new RotaryObstacle(85, 410, 130, 2, 0,0){
             @Override
             protected void changeVelX() {
-                if(getX() < 90)
+                if(getX() < 85)
                     velX*=-1;
-                else if(getX() > 322)
+                else if(getX() > 317)
                     velX*=-1;
             }
         };
@@ -56,6 +56,6 @@ public class Level32 extends SetOfObstacles{
 
     @Override
     public SetOfObstacles nextLevel() {
-        return new Level32();
+        return new Level33();
     }
 }

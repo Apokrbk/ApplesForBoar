@@ -5,6 +5,7 @@ import com.apok.games.ballgame.ui.GameoverButton;
 import com.apok.games.ballgame.ui.IClickCallback;
 import com.apok.games.ballgame.ui.MyFont;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 
@@ -37,6 +38,8 @@ class GameoverScreen extends AbstractScreen{
         return new GameoverButton(new IClickCallback() {
                 @Override
                 public void onClick() {
+                    for(Actor actor : stage.getActors())
+                        actor.remove();
                     game.setScreen(new MenuScreen(game));
                 }
             });

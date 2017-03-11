@@ -6,6 +6,7 @@ import com.apok.games.ballgame.ui.IClickCallback;
 import com.apok.games.ballgame.ui.MyFont;
 import com.apok.games.ballgame.ui.PlayButton;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Timer;
 
@@ -41,6 +42,8 @@ public class MenuScreen extends AbstractScreen {
         return new PlayButton(new IClickCallback() {
                 @Override
                 public void onClick() {
+                    for(Actor actor : stage.getActors())
+                        actor.remove();
                     game.setScreen(new GameplayScreen(game));
                     Timer.schedule(new Timer.Task() {
                         @Override

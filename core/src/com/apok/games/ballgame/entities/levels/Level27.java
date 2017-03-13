@@ -1,16 +1,12 @@
 package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
-import com.apok.games.ballgame.entities.ReflectiveObstacle;
 import com.apok.games.ballgame.entities.RotaryObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.badlogic.gdx.utils.Timer;
 
-/**
- * Created by Apok on 09.03.2017.
- */
 
-public class Level27 extends SetOfObstacles{
+class Level27 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
         obstacles.add(new Obstacle(0, 450, 108,0,0));

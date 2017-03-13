@@ -1,11 +1,6 @@
 package com.apok.games.ballgame.entities;
 
-import com.apok.games.ballgame.entities.Obstacle;
 import com.badlogic.gdx.math.Polygon;
-
-/**
- * Created by Apok on 07.03.2017.
- */
 
 public class RotaryObstacle extends Obstacle{
     protected int rotation;

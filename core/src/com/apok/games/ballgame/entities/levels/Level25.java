@@ -1,94 +1,54 @@
 package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
-import com.apok.games.ballgame.entities.ReflectiveObstacle;
+import com.apok.games.ballgame.entities.RotaryObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
-import com.badlogic.gdx.utils.Timer;
 
-/**
- * Created by Apok on 09.03.2017.
- */
 
-public class Level25 extends SetOfObstacles{
+class Level25 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
-        obstacles.add(new ReflectiveObstacle(211, 160, 370, 0 ,0));
-        initFirstObstacle();
-        initSecondObstacle();
-        initThirdObstacle();
-        initFourthObstacle();
-    }
-
-    private void initFourthObstacle() {
-        obstacles.add(new Obstacle(362, 300, 70, 0 ,0){
+        obstacles.add(new Obstacle(-232, 450, 232, 2,0){
             @Override
-            protected void initObstacle(int x, int y, int width, int velX, int velY) {
-                super.initObstacle(x, y, width, velX, velY);
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        if(getX() == 221)
-                            setPosition(362, 300);
-                        else
-                            setPosition(221, 300);
-                    }
-                },0,1);
+            protected void changeVelX() {
+                if(getX() > 0)
+                    velX*=-1;
+                else if(getX()< -232)
+                    velX*=-1;
             }
         });
-    }
-
-    private void initThirdObstacle() {
-        obstacles.add(new Obstacle(0, 300, 70, 0 ,0){
+        obstacles.add(new Obstacle(200, 450, 232, 2,0){
             @Override
-            protected void initObstacle(int x, int y, int width, int velX, int velY) {
-                super.initObstacle(x, y, width, velX, velY);
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        if(getX() == 141)
-                            setPosition(0, 300);
-                        else
-                            setPosition(141, 300);
-                    }
-                },0,1);
+            protected void changeVelX() {
+                if(getX() > 432)
+                    velX*=-1;
+                else if(getX()< 200)
+                    velX*=-1;
             }
         });
-    }
-
-    private void initSecondObstacle() {
-        obstacles.add(new Obstacle(141, 500, 70, 0 ,0){
+        RotaryObstacle obstacle = new RotaryObstacle(-15, 490, 130, 2, 0,0){
             @Override
-            protected void initObstacle(int x, int y, int width, int velX, int velY) {
-                super.initObstacle(x, y, width, velX, velY);
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        if(getX() == 141)
-                            setPosition(0, 500);
-                        else
-                            setPosition(141, 500);
-                    }
-                },0,1);
+            protected void changeVelX() {
+                if(getX() < -15)
+                    velX*=-1;
+                else if(getX() > 217)
+                    velX*=-1;
             }
-        });
-    }
-
-    private void initFirstObstacle() {
-        obstacles.add(new Obstacle(221, 500, 70, 0 ,0){
+        };
+        obstacle.setRotation(35);
+        obstacles.add(obstacle);
+        RotaryObstacle obstacle2 = new RotaryObstacle(85, 410, 130, 2, 0,0){
             @Override
-            protected void initObstacle(int x, int y, int width, int velX, int velY) {
-                super.initObstacle(x, y, width, velX, velY);
-                Timer.schedule(new Timer.Task() {
-                    @Override
-                    public void run() {
-                        if(getX() == 221)
-                            setPosition(362, 500);
-                        else
-                            setPosition(221, 500);
-                    }
-                },0,1);
+            protected void changeVelX() {
+                if(getX() < 85)
+                    velX*=-1;
+                else if(getX() > 317)
+                    velX*=-1;
             }
-        });
+        };
+        obstacle2.setRotation(35);
+        obstacles.add(obstacle2);
+
     }
 
     @Override

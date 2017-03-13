@@ -1,21 +1,29 @@
 package com.apok.games.ballgame.entities.levels;
 
+import com.apok.games.ballgame.entities.Ball;
 import com.apok.games.ballgame.entities.Obstacle;
-import com.apok.games.ballgame.entities.ReflectiveObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 
-/**
- * Created by Apok on 08.03.2017.
- */
 
-public class Level19 extends SetOfObstacles{
+class Level19 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
-        obstacles.add(new Obstacle(0, 500, 120, 0, 0));
-        obstacles.add(new Obstacle(312, 500, 120, 0, 0));
-        obstacles.add(new ReflectiveObstacle(140, 200, 200, 0, 0));
-        obstacles.add(new ReflectiveObstacle(282, 200, 200, 0, 0));
-        obstacles.add(new Obstacle(160, 350, 112, 0, 0));
+        obstacles.add(new Obstacle(0, 500, 150, 0, 0){
+            @Override
+            protected boolean collidesWithBall(Ball ball) {
+                if(ball.getY() > 300)
+                    this.setPosition(141,500);
+                return super.collidesWithBall(ball);
+            }
+        });
+        obstacles.add(new Obstacle(282, 500, 150, 0, 0){
+            @Override
+            protected boolean collidesWithBall(Ball ball) {
+                if(ball.getY() > 300)
+                    this.setPosition(141,500);
+                return super.collidesWithBall(ball);
+            }
+        });
     }
 
     @Override

@@ -1,25 +1,39 @@
 package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
-import com.apok.games.ballgame.entities.ReflectiveObstacle;
-import com.apok.games.ballgame.entities.RotaryObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
+import com.badlogic.gdx.math.MathUtils;
 
-/**
- * Created by Apok on 08.03.2017.
- */
 
-public class Level15 extends SetOfObstacles{
+class Level15 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
-        obstacles.add(new ReflectiveObstacle(81, 160, 380, 0, 0));
-        obstacles.add(new ReflectiveObstacle(341, 160, 380, 0, 0));
-        obstacles.add(new RotaryObstacle(0, 320, 81, 0, 0, 4));
-        obstacles.add(new RotaryObstacle(351, 320, 81, 0, 0, -4));
-        obstacles.add(new Obstacle(91, 200,100, 0, 0));
-        obstacles.add(new Obstacle(91, 400,100, 0, 0));
-        obstacles.add(new Obstacle(241, 300,100, 0, 0));
-        obstacles.add(new Obstacle(241, 500,100, 0, 0));
+        obstacles.add(new Obstacle(432, 400, 150, -10, 0){
+            @Override
+            public void update() {
+                super.update();
+                if(getX() < -150)
+                    this.setPosition(432, MathUtils.random(2.0f,5.0f)*100);
+            }
+
+            @Override
+            protected void changeVelX() {
+
+            }
+        });
+        obstacles.add(new Obstacle(800,300, 150, -10, 0){
+            @Override
+            public void update() {
+                super.update();
+                if(getX() < -150)
+                    this.setPosition(432, MathUtils.random(2.0f,5.0f)*100);
+            }
+
+            @Override
+            protected void changeVelX() {
+
+            }
+        });
     }
 
     @Override

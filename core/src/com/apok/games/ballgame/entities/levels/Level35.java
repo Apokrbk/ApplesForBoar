@@ -3,11 +3,7 @@ package com.apok.games.ballgame.entities.levels;
 import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 
-/**
- * Created by Apok on 11.03.2017.
- */
-
-public class Level35 extends SetOfObstacles {
+class Level35 extends SetOfObstacles {
     @Override
     protected void initObstacles() {
         obstacles.add(new Obstacle(85, 240, 30, 0, 0));

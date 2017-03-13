@@ -17,9 +17,7 @@ public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		 super.onCreate(savedInstanceState);
-        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-        initialize(new BallGame(), config);
-        /*
+
 		RelativeLayout layout = new RelativeLayout(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -30,7 +28,7 @@ public class AndroidLauncher extends AndroidApplication {
 
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId("ca-app-pub-4871454746504726/6353987692");
+        adView.setAdUnitId("ca-app-pub-4871454746504726/9286787692");
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
         layout.addView(gameView);
@@ -42,9 +40,7 @@ public class AndroidLauncher extends AndroidApplication {
         adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
         layout.addView(adView, adParams);
-        setContentView(layout); */
-
-
+        setContentView(layout);
 
 	}
 }

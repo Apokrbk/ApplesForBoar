@@ -3,11 +3,8 @@ package com.apok.games.ballgame.entities.levels;
 import com.apok.games.ballgame.entities.RotaryObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 
-/**
- * Created by Apok on 07.03.2017.
- */
 
-public class Level7 extends SetOfObstacles{
+class Level7 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
         obstacles.add(new RotaryObstacle(0, 320, 216, 0,0, -2));

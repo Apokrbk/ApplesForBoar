@@ -1,29 +1,23 @@
 package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
+import com.apok.games.ballgame.entities.RotaryObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
-import com.badlogic.gdx.math.MathUtils;
 
-/**
- * Created by Apok on 09.03.2017.
- */
 
-public class Level20 extends SetOfObstacles{
+
+class Level20 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
-        obstacles.add(new Obstacle(-150, 400, 150, 15, 0){
-            @Override
-            public void update() {
-                super.update();
-                if(getX() > 432)
-                    this.setPosition(-150, MathUtils.random(3,5)*100);
-            }
+        RotaryObstacle obstacle = new RotaryObstacle(0, 400, 150, 4, 0, 0);
+        obstacle.setRotation(90);
+        obstacles.add(obstacle);
+        RotaryObstacle obstacle2 = new RotaryObstacle(282, 230, 150, -4, 0, 0);
+        obstacle2.setRotation(90);
+        obstacles.add(obstacle2);
+        obstacles.add(new Obstacle(0, 313, 100, 0,0));
+        obstacles.add(new Obstacle(332, 313, 100, 0,0));
 
-            @Override
-            protected void changeVelX() {
-
-            }
-        });
     }
 
     @Override

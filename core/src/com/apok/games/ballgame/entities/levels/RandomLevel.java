@@ -1,14 +1,13 @@
 package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
-import com.apok.games.ballgame.entities.ReflectiveObstacle;
 import com.apok.games.ballgame.entities.RotaryObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 import com.badlogic.gdx.math.MathUtils;
 
 
 
-public class RandomLevel extends SetOfObstacles{
+class RandomLevel extends SetOfObstacles{
     @Override
     protected void initObstacles() {
         for(int i=0; i<MathUtils.random(2,5); i++)

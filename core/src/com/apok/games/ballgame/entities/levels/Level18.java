@@ -1,70 +1,91 @@
 package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
+import com.apok.games.ballgame.entities.ReflectiveObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
+import com.badlogic.gdx.utils.Timer;
 
-/**
- * Created by Apok on 08.03.2017.
- */
 
-public class Level18 extends SetOfObstacles{
+class Level18 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
-        initStableObstacles();
-        initFirstMovingObstacle();
-        initSecondMovingObstacle();
-        initThirdMovingObstacle();
+        obstacles.add(new ReflectiveObstacle(211, 160, 370, 0 ,0));
+        initFirstObstacle();
+        initSecondObstacle();
+        initThirdObstacle();
+        initFourthObstacle();
     }
 
-    private void initThirdMovingObstacle() {
-        Obstacle obstacle = new Obstacle(144, 500, 144, -2, 0)
-        {
-            public void changeVelX()
-            {
-                if(getX() < -20)
-                    velX = 15;
-                else if(getX() > 144)
-                    velX = -1;
+    private void initFourthObstacle() {
+        obstacles.add(new Obstacle(362, 300, 70, 0 ,0){
+            @Override
+            protected void initObstacle(int x, int y, int width, int velX, int velY) {
+                super.initObstacle(x, y, width, velX, velY);
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        if(getX() == 221)
+                            setPosition(362, 300);
+                        else
+                            setPosition(221, 300);
+                    }
+                },0,1);
             }
-        };
-        obstacles.add(obstacle);
+        });
     }
 
-    private void initSecondMovingObstacle() {
-        Obstacle obstacle = new Obstacle(134, 400, 144, -2, 0)
-        {
-            public void changeVelX()
-            {
-                if(getX() < -20)
-                    velX = 15;
-                else if(getX() > 144)
-                    velX = -1;
+    private void initThirdObstacle() {
+        obstacles.add(new Obstacle(0, 300, 70, 0 ,0){
+            @Override
+            protected void initObstacle(int x, int y, int width, int velX, int velY) {
+                super.initObstacle(x, y, width, velX, velY);
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        if(getX() == 141)
+                            setPosition(0, 300);
+                        else
+                            setPosition(141, 300);
+                    }
+                },0,1);
             }
-        };
-        obstacles.add(obstacle);
+        });
     }
 
-    private void initFirstMovingObstacle() {
-        Obstacle obstacle = new Obstacle(124, 300, 144, -2, 0)
-        {
-            public void changeVelX()
-            {
-                if(getX() < -20)
-                    velX = 15;
-                else if(getX() > 144)
-                    velX = -1;
+    private void initSecondObstacle() {
+        obstacles.add(new Obstacle(141, 500, 70, 0 ,0){
+            @Override
+            protected void initObstacle(int x, int y, int width, int velX, int velY) {
+                super.initObstacle(x, y, width, velX, velY);
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        if(getX() == 141)
+                            setPosition(0, 500);
+                        else
+                            setPosition(141, 500);
+                    }
+                },0,1);
             }
-        };
-        obstacles.add(obstacle);
+        });
     }
 
-    private void initStableObstacles() {
-        obstacles.add(new Obstacle(0, 300, 144, 0 ,0));
-        obstacles.add(new Obstacle(0, 400, 144, 0 ,0));
-        obstacles.add(new Obstacle(0, 500, 144, 0 ,0));
-        obstacles.add(new Obstacle(288, 300, 144, 0 ,0));
-        obstacles.add(new Obstacle(288, 400, 144, 0 ,0));
-        obstacles.add(new Obstacle(288, 500, 144, 0 ,0));
+    private void initFirstObstacle() {
+        obstacles.add(new Obstacle(221, 500, 70, 0 ,0){
+            @Override
+            protected void initObstacle(int x, int y, int width, int velX, int velY) {
+                super.initObstacle(x, y, width, velX, velY);
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        if(getX() == 221)
+                            setPosition(362, 500);
+                        else
+                            setPosition(221, 500);
+                    }
+                },0,1);
+            }
+        });
     }
 
     @Override

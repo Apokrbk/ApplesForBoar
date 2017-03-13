@@ -3,9 +3,6 @@ package com.apok.games.ballgame.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
-/**
- * Created by Apok on 08.03.2017.
- */
 
 public class ReflectiveObstacle extends Obstacle{
     private static final int WIDTH = 10;

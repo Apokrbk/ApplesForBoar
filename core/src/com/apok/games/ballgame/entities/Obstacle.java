@@ -7,9 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class Obstacle extends Image{
 
-    protected static final int HEIGHT = 10;
-
-    protected Rectangle bounds;
+    static final int HEIGHT = 10;
+    Rectangle bounds;
     protected int velX;
     protected int velY;
 

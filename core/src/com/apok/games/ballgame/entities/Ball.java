@@ -66,7 +66,7 @@ public class Ball extends Image {
             reverseDirection();
     }
 
-    public void reverseDirection()
+    void reverseDirection()
     {
         velX *= -1;
     }

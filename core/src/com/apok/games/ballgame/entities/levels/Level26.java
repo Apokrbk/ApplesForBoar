@@ -1,34 +1,36 @@
 package com.apok.games.ballgame.entities.levels;
 
-import com.apok.games.ballgame.entities.Ball;
 import com.apok.games.ballgame.entities.Obstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
-import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-/**
- * Created by Apok on 09.03.2017.
- */
 
-public class Level26 extends SetOfObstacles{
+class Level26 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
-        obstacles.add(new Obstacle(0, 500, 150, 0, 0){
+        obstacles.add(new Obstacle(0,350, 41, 0,0));
+        obstacles.add(new Obstacle(391,350, 41, 0,0));
+        obstacles.add(new Obstacle(41, 350, 116,0, 2){
             @Override
-            protected boolean collidesWithBall(Ball ball) {
-                if(ball.getY() > 300)
-                    this.setPosition(141,500);
-                return super.collidesWithBall(ball);
+            protected void changeVelY() {
+                if(getY() > 425 || getY() < 275)
+                    velY*=-1;
             }
         });
-        obstacles.add(new Obstacle(282, 500, 150, 0, 0){
+        obstacles.add(new Obstacle(275, 350, 116,0, 2){
             @Override
-            protected boolean collidesWithBall(Ball ball) {
-                if(ball.getY() > 300)
-                    this.setPosition(141,500);
-                return super.collidesWithBall(ball);
+            protected void changeVelY() {
+                if(getY() > 425 || getY() < 275)
+                    velY*=-1;
             }
         });
+        obstacles.add(new Obstacle(157, 350, 118,0, -2){
+            @Override
+            protected void changeVelY() {
+                if(getY() > 425 || getY() < 275)
+                    velY*=-1;
+            }
+        });
+
     }
 
     @Override

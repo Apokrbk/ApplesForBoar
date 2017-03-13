@@ -1,28 +1,67 @@
 package com.apok.games.ballgame.entities.levels;
 
 import com.apok.games.ballgame.entities.Obstacle;
-import com.apok.games.ballgame.entities.RotaryObstacle;
 import com.apok.games.ballgame.entities.SetOfObstacles;
 
-/**
- * Created by Apok on 07.03.2017.
- */
 
-public class Level12 extends SetOfObstacles {
+class Level12 extends SetOfObstacles{
     @Override
     protected void initObstacles() {
-        initFirstObstacle();
-        initSecondObstacle();
+        initStableObstacles();
+        initFirstMovingObstacle();
+        initSecondMovingObstacle();
+        initThirdMovingObstacle();
     }
 
-    private void initSecondObstacle() {
-        RotaryObstacle obstacle = new RotaryObstacle(292, 250, 140, -3, 0, -4);
+    private void initThirdMovingObstacle() {
+        Obstacle obstacle = new Obstacle(144, 500, 144, -2, 0)
+        {
+            public void changeVelX()
+            {
+                if(getX() < -20)
+                    velX = 15;
+                else if(getX() > 144)
+                    velX = -1;
+            }
+        };
         obstacles.add(obstacle);
     }
 
-    private void initFirstObstacle() {
-        Obstacle obstacle = new RotaryObstacle(0, 400, 140, 3, 0, 4);
+    private void initSecondMovingObstacle() {
+        Obstacle obstacle = new Obstacle(134, 400, 144, -2, 0)
+        {
+            public void changeVelX()
+            {
+                if(getX() < -20)
+                    velX = 15;
+                else if(getX() > 144)
+                    velX = -1;
+            }
+        };
         obstacles.add(obstacle);
+    }
+
+    private void initFirstMovingObstacle() {
+        Obstacle obstacle = new Obstacle(124, 300, 144, -2, 0)
+        {
+            public void changeVelX()
+            {
+                if(getX() < -20)
+                    velX = 15;
+                else if(getX() > 144)
+                    velX = -1;
+            }
+        };
+        obstacles.add(obstacle);
+    }
+
+    private void initStableObstacles() {
+        obstacles.add(new Obstacle(0, 300, 144, 0 ,0));
+        obstacles.add(new Obstacle(0, 400, 144, 0 ,0));
+        obstacles.add(new Obstacle(0, 500, 144, 0 ,0));
+        obstacles.add(new Obstacle(288, 300, 144, 0 ,0));
+        obstacles.add(new Obstacle(288, 400, 144, 0 ,0));
+        obstacles.add(new Obstacle(288, 500, 144, 0 ,0));
     }
 
     @Override
